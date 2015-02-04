@@ -1,4 +1,5 @@
-	<script type="text/javascript">
+ <script type="text/javascript">
+        /*v7*/ 
         var dataLayer = [],
             config = {                
                 startTime: new Date().getTime(),
