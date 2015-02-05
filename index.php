@@ -7,11 +7,11 @@
     <title>Test</title>    
     <script type="text/javascript" src="minified/lab_min.js"></script>
     <script type="text/javascript">
-        <?php 
-            include('configs/analytics_config_tveda.js');
-        ?>
         <?php
-            include('libs/analytics_init.js');
+            if (file_exists('configs/analytics_config_tveda_min.js') && (file_exists('libs/analytics_init_domspbren_min.js'))){
+                include('configs/analytics_config_tveda_min.js');
+                include('libs/analytics_init_domspbren_min.js');
+            }          
         ?>
     </script>    
 </head>
