@@ -36,7 +36,7 @@
 <div id="top" style="background: #eee; height: 500px">#top</div>
 <div id="main" style="background: #ccc; height: 2000px">#main</div>
 <div style="background: #999; height: 200px; display: block;"></div>
-<!--<img src="http://up.barfgraph.ir/up/barfgraph/Pictures/Post-Image/Trend%20color%20neon%20background002.jpg"/>
-<img src="http://www.psdgraphics.com/file/colorful-triangles-background.jpg"/>-->
+<img src="http://up.barfgraph.ir/up/barfgraph/Pictures/Post-Image/Trend%20color%20neon%20background002.jpg"/>
+<img src="http://www.psdgraphics.com/file/colorful-triangles-background.jpg"/>
 </body>
 </html>

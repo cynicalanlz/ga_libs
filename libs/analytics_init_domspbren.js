@@ -102,7 +102,7 @@ $LAB
             allowAnchor: true
         });
         tracker.set('expId', config.expId);
-        tracker.set('expVar', config.expId);
+        tracker.set('expVar', config.expVar);
         ga(config.tracker_name + ".require", "displayfeatures");
         ga(config.tracker_name + ".require", "Monster", config);
         ga(config.tracker_name + ".require", "GA_data", config);
