@@ -24,6 +24,7 @@ config = {
     dz: 1460,
     uid_in: 0,
     uid_enc_out_tag: "registrationId",
-    uid_plain_out_tag: "uid_out"
+    uid_plain_out_tag: "uid_out",
+    expId : "YByMKfprRCStcMvK8zh1yw"
 },
 uid_set, tag_loaded;

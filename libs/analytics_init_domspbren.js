@@ -26,8 +26,7 @@ config.readyFired = false;
 config.readyEventHandlersInstalled = false;
 config.ready = function() {
     if (!config.readyFired) {
-        config.readyFired = !0;
-        console.log(config.readyList[a]);
+        config.readyFired = !0;        
         for (var a = config.readyList.length; a--;) config.readyList[a].fn.call(window, config.readyList[a].cxt);
         config.readyList = [];
     }
@@ -94,12 +93,20 @@ window[config.ga_object] = window[config.ga_object] || function() {
 });
 $LAB    
     .script(config.plugins_path)
+    .script("//www.google-analytics.com/cx/api.js?experiment=" + config.expId).wait(function(){
+            config.expVar = cxApi.chooseVariation();
+            cxApi.setChosenVariation(config.expVar, config.expId);
+            console.log('xx');
+            config._rr(console.log,expVar);            
+        })
     .script("//www.google-analytics.com/analytics" + (config.debug == true ? "_debug" : "") + ".js").wait(function() {
         var tracker = ga.create(config.tracker_id, config.highest_level_domain, {
             name: config.tracker_name,
             cookieExpires: config.dz * 24 * 60 * 60,
             allowAnchor: true
         });
+        tracker.set('expId', config.expId);
+        tracker.set('expVar', config.expId);
         ga(config.tracker_name + ".require", "displayfeatures");
         ga(config.tracker_name + ".require", "Monster", config);
         ga(config.tracker_name + ".require", "GA_data", config);
@@ -125,8 +132,10 @@ $LAB
                 params: config.uid || {}
             });
         });
-        config._rr(ga,config.tracker_name + ".GA_data:write_plain");
-        
+        config._rr(ga,config.tracker_name + ".GA_data:write_plain");        
+        config.sb = $LAB.sandbox();
+        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));
+        config.sb
     })
     .script("//mc.yandex.ru/metrika/watch.js")
     .script("//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""));
