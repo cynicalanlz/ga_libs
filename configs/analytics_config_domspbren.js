@@ -25,6 +25,7 @@ config = {
     uid_in: 0,
     uid_enc_out_tag: "registrationId",
     uid_plain_out_tag: "uid_out",
-    expId : "YByMKfprRCStcMvK8zh1yw"
+    expId : "YByMKfprRCStcMvK8zh1yw",
+    readyComplete : false
 },
 uid_set, tag_loaded;

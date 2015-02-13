@@ -608,14 +608,15 @@ var Scroll_tr = function(c, d) {
 		cookieName: "_scroll_tr_ck"
 	};
 	this.lastScroll = null;
+	this.viewportHeight = 0;
+	this.pageHeight = 0;
+	this.clientHeight = 0;
+};
+Scroll_tr.prototype.init = function(d) {		
+	window.config.lastScroll = this.lastScroll;		
 	this.viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight || 0;
 	this.pageHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
-	this.clientHeight = document.documentElement.clientTop || 0;
-};
-Scroll_tr.prototype.init = function(d) {
-	this.debugMessage("init - " + window.config.lastScroll);
-	window.config.lastScroll = this.lastScroll;
-	this.debugMessage("init - " + window.config.lastScroll);
+	this.clientHeight = document.documentElement.clientTop || 0;	
 	if (typeof d == typeof {}) {
 		for (var e in d) {
 			if (d.hasOwnProperty(e)) {

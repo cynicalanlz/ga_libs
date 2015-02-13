@@ -24,18 +24,37 @@ if (typeof config.metas != "undefined") {
 config.readyList = [];
 config.readyFired = false;
 config.readyEventHandlersInstalled = false;
-config.ready = function() {
-    if (!config.readyFired) {
+config.compl = function (){        
+   if (!config.readyComplete) {        
+        config.readyComplete = !0;        
+        for (var a = config.readyList.length; a--;){
+            config.readyList[a].fn.call(window, config.readyList[a].cxt);                             
+        }         
+        config.readyList = []; 
+   } 
+};
+config.ready = function() {       
+    if (!config.readyFired) {            
         config.readyFired = !0;        
-        for (var a = config.readyList.length; a--;) config.readyList[a].fn.call(window, config.readyList[a].cxt);    
-        consig.readyList = [];
+        for (var a = config.readyList.length; a--;){            
+            if(config.readyList[a].inx){                                
+                config.readyList[a].fn.call(window, config.readyList[a].cxt);       
+                config.readyList.splice(a,1);                                                               
+            }            
+        }                                         
+    }    
+    if (!config.readyComplete){        
+        /^co/.test(document.readyState) && config.compl();
     }
 };
-config.readyStateChange = function() {
-    /^in|^co/.test(document.readyState)&&config.ready();      
+config.readyStateChange = function() { 
+    switch(config.expVar){
+        case "complete":config.ready();break;
+        case "interactive":config.compl()
+    };    
 };
-config._rr = function(a,cxt) {    
-    config.readyFired ? setTimeout(function() {a(cxt);}, 1) : (config.readyList.push({fn:a,cxt:cxt}), /^in|^co/.test(document.readyState) ? setTimeout(config.ready(), 1) : readyEventHandlersInstalled || (document.addEventListener ? (document.addEventListener("DOMContentLoaded", config.ready(), !1), window.addEventListener("load", config.ready(), !1)) : (document.attachEvent("onreadystatechange", config.readyStateChange()), window.attachEvent("onload", config.ready())), readyEventHandlersInstalled = !0));    
+config._rr = function(inx, a, cxt) {   
+    config.readyComplete||config.readyFired&&inx?setTimeout(function(){a(cxt)},1):(config.readyList.push({fn:a,cxt:cxt,inx:inx}),/^in|^co/.test(document.readyState)&&setTimeout(config.ready,1),config.readyEventHandlersInstalled||(document.addEventListener?(document.addEventListener("DOMContentLoaded",config.ready,!1),window.addEventListener("load",config.compl,!1)):(document.attachEvent("onreadystatechange",config.readyStateChange),window.attachEvent("onload",config.compl)),config.readyEventHandlersInstalled=!0));
 };
 config.uid_ck = (config.ck.match("(^|; )_uid=([^;]*)") || 0)[2];
 config.cookieC = config.ck.indexOf("_ga=") > -1 ? config.ck.toString().split("_ga=")[1].split(";")[0].split(/GA[0-9]\.[0-9]\./)[1] : "";
@@ -93,10 +112,20 @@ $LAB
     .script("//www.google-analytics.com/cx/api.js?experiment=" + config.expId).wait(function(){
             config.expVar = cxApi.chooseVariation();
             cxApi.setChosenVariation(config.expVar, config.expId);            
-            config._rr(console.log('вывод тут'));
+            config._rr(true,
+                function(){                
+                    switch (config.expVar){
+                        case 0 : 
+                            console.log('default option showed'); break;
+                        case 1 :
+                            console.log('вывод 2');break;                         
+
+                    }                
+                }                
+            );
         })
     .script("//www.google-analytics.com/analytics" + (config.debug == true ? "_debug" : "") + ".js").wait(function() {
-        var tracker = ga.create(config.tracker_id, config.highest_level_domain, {
+        var tracker = ga.create(config.tracker_id, config.highest_level_domain,{
             name: config.tracker_name,
             cookieExpires: config.dz * 24 * 60 * 60,
             allowAnchor: true
@@ -109,11 +138,7 @@ $LAB
         ga(config.tracker_name + ".require", "Scroll_tr", config);
         ga(config.tracker_name + ".Monster:getBestInfo");
         ga(config.tracker_name + ".Monster:preMonster");
-        ga(config.tracker_name + ".GA_data:fire");
-        ga(config.tracker_name + ".Scroll_tr:init");
-        window.onscroll = function() {
-            ga(config.tracker_name + ".Scroll_tr:fire");
-        };
+        ga(config.tracker_name + ".GA_data:fire");        
         ga(config.tracker_name + ".Monster:dirmonURL");
         config.uid = {
             'userId': tracker.get('clientId')
@@ -128,7 +153,13 @@ $LAB
                 params: config.uid || {}
             });
         });
-        config._rr(ga,config.tracker_name + ".GA_data:write_plain");        
+        config._rr(true, ga, config.tracker_name + ".GA_data:write_plain");
+        config._rr(false, function(){        
+            ga(config.tracker_name + ".Scroll_tr:init");
+            window.onscroll = function() {
+                ga(config.tracker_name + ".Scroll_tr:fire");
+            };            
+        });
         config.sb = $LAB.sandbox();
         config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));        
     })
