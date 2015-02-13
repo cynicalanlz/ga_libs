@@ -13,7 +13,7 @@ config = {
             keywords: 0
         }
     },
-    debug: true,
+    debug: false,
     tagmanager_id: "GTM-PNFDW6",
     tracker_id: "UA-41176985-1",
     yam_id: "21345325",

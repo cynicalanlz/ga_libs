@@ -108,7 +108,6 @@ providePlugin("GA_data", GA_data);
 
 
 var Monster = function(e, a) {
-	console.log("monster init");
 	this.tracker = e;
 	this.uid = e.get("clientId");
 	this.uid_ = a.uid_;
@@ -133,8 +132,7 @@ var Monster = function(e, a) {
 	}
 	this.enginesAndQueryParams = "daum:q= eniro:search_word= naver:query= pchome:q= images.google:q= google:q= yahoo:p= yahoo:q= msn:q= bing:q= aol:query= aol:q= lycos:q= lycos:query= ask:q= netscape:query= cnn:query= about:terms= mamma:q= voila:rdata= virgilio:qs= live:q= baidu:wd= alice:qs= yandex:text= najdi:q= seznam:q= rakuten:qt= biglobe:q= goo.ne:MT= wp:szukaj= onet:qt= yam:k= kvasir:q= ozu:q= terra:query= rambler:query= conduit:q= babylon:q= search-results:q= avg:q= comcast:q= incredimail:q= startsiden:q= go.mail.ru:q= search.centrum.cz:q= 360.cn:q=".split(" ");
 	this.urlRefc = a.urlRefc;
-	this.cookieC = a.cookieC;
-	console.log("init finished");
+	this.cookieC = a.cookieC;	
 };
 Monster.prototype.remixed = function(paramBits) {
 	var reduxBits = "";
@@ -367,8 +365,7 @@ Monster.prototype.preMonster = function() {
 		window.location.hash = "";
 	}
 };
-Monster.prototype.dirmonURL = function() {
-	console.log("dirmonURL");
+Monster.prototype.dirmonURL = function() {	
 	var urlSource = "";
 	var urlMedium = "";
 	var urlCampaign = "";
@@ -445,8 +442,7 @@ Monster.prototype.dirmonCookie = function() {
 	var finalCookie = "utmzombie=" + cookieString + "; path=/; expires=" + cookieExpires;
 	document.cookie = finalCookie;
 };
-Monster.prototype.getBestInfo = function() {
-	console.log("getBestInfo");
+Monster.prototype.getBestInfo = function() {	
 	if (this.loc.href.indexOf("?") > -1) {
 		var queryParams = this.loc.href.split("?")[1].split(/#/)[0].split(/&/g);
 		for (i = 0; i < queryParams.length; i++) {
