@@ -11,7 +11,8 @@ config = {
             all: 0,
             desc: 0,
             keywords: 0
-        }
+        },
+        header : {}
     },
     debug: false,
     tagmanager_id: "GTM-PNFDW6",

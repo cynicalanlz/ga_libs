@@ -20,7 +20,7 @@
     <div><img src="//mc.yandex.ru/watch/12251719" style="position:absolute; left:-9999px;" alt="" /></div>
 </noscript>
 <div id="console" style="background: #aaa; width: 200px; position: fixed; top: 0; right: 0; text-align: center; padding: 20px; line-height: 1; font-family: sans-serif;"></div>
-<h1>
+<h1></h1>
 <table border="1px solid" style="margin: 19px 0 0 112px; padding: 15px;">
     <tbody>
     <tr><th>Test name</th><th>Result</th></tr>

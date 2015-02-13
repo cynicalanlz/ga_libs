@@ -33,7 +33,7 @@ config.compl = function (){
         config.readyList = []; 
    } 
 };
-config.ready = function() {       
+config.ready = function() {          
     if (!config.readyFired) {            
         config.readyFired = !0;        
         for (var a = config.readyList.length; a--;){            
@@ -73,9 +73,13 @@ config.createCookie = function(name, value, days) {
 if (typeof config.uid_ck === "undefined") {
     config.uid_ck = config.createCookie("_uid", Math.floor((Math.random() * 1000000000) + 1) + "." + new Date().getTime(), config.dz);
 }
+config.getHeader = function () {
+    config.metas.header.all = document.getElementsByTagName("h1");
+    0<config.metas.header.all.length&&(config.metas.header.text=""!=config.metas.header.all[0].innerHTML?config.metas.header.all[0].innerHTML:"(not set)",config.metas.count.header=config.metas.header.all.length);
+};
 config.checkErrors = function() {
     if (config.metas.count.desc == 0 || config.metas.count.desc > 1 || config.metas.desc == "(not set)") {
-        config.errMsg = config.loc.href + " has " + config.metas.count.desc + " description tags and first tag is " + ((config.metas.desc == "(not set)") ? "not set" : "set");
+        config.errMsg = config.loc.href + " has " + config.metas.count.desc + " description tags and first tag is " + ((config.metas.desc == "(not set)") ? "not set" : "set");        
         ga(config.tracker_name + ".send", "exception", {
             "exFatal": false,
             "exDescription": config.errMsg,
@@ -83,7 +87,7 @@ config.checkErrors = function() {
         });
     }
     if (config.metas.count.keywords == 0 || config.metas.count.keywords > 1 || config.metas.keywords == "(not set)") {
-        config.errMsg = config.loc.href + " has " + config.metas.count.keywords + " keywords tags and first tag is " + ((config.metas.keywords == "(not set)") ? "not set" : "set");
+        config.errMsg = config.loc.href + " has " + config.metas.count.keywords + " keywords tags and first tag is " + ((config.metas.keywords == "(not set)") ? "not set" : "set");        
         ga(config.tracker_name + ".send", "exception", {
             "exFatal": false,
             "exDescription": config.errMsg,
@@ -91,7 +95,7 @@ config.checkErrors = function() {
         });
     }
     if (config.metas.count.header == 0 || config.metas.count.header > 1 || config.metas.header.text == "(not set)") {
-        config.errMsg = config.loc.href + " has " + config.metas.count.header + " h1 tags and first tag is " + ((config.metas.header.text == "(not set)") ? "not set" : "set");
+        config.errMsg = config.loc.href + " has " + config.metas.count.header + " h1 tags and first tag is " + ((config.metas.header.text == "(not set)") ? "not set" : "set");        
         ga(config.tracker_name + ".send", "exception", {
             "exFatal": false,
             "exDescription": config.errMsg,
@@ -120,7 +124,9 @@ $LAB
                         case 1 :
                             console.log('вывод 2');break;                         
 
-                    }                
+                    }
+                    config.getHeader();
+                    config.checkErrors();               
                 }                
             );
         })
