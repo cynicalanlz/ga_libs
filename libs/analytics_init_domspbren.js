@@ -27,18 +27,15 @@ config.readyEventHandlersInstalled = false;
 config.ready = function() {
     if (!config.readyFired) {
         config.readyFired = !0;        
-        for (var a = config.readyList.length; a--;) config.readyList[a].fn.call(window, config.readyList[a].cxt);
-        config.readyList = [];
+        for (var a = config.readyList.length; a--;) config.readyList[a].fn.call(window, config.readyList[a].cxt);    
+        consig.readyList = [];
     }
 };
 config.readyStateChange = function() {
     /^in|^co/.test(document.readyState)&&config.ready();      
 };
-config._rr = function(a,cxt) {
-    config.readyFired ? setTimeout(a, 1) : (config.readyList.push({
-        fn: a,
-        cxt : cxt
-    }), /^in|^co/.test(document.readyState) ? setTimeout(config.ready(), 1) : readyEventHandlersInstalled || (document.addEventListener ? (document.addEventListener("DOMContentLoaded", config.ready(), !1), window.addEventListener("load", config.ready(), !1)) : (document.attachEvent("onreadystatechange", config.readyStateChange()), window.attachEvent("onload", config.ready())), readyEventHandlersInstalled = !0));
+config._rr = function(a,cxt) {    
+    config.readyFired ? setTimeout(function() {a(cxt);}, 1) : (config.readyList.push({fn:a,cxt:cxt}), /^in|^co/.test(document.readyState) ? setTimeout(config.ready(), 1) : readyEventHandlersInstalled || (document.addEventListener ? (document.addEventListener("DOMContentLoaded", config.ready(), !1), window.addEventListener("load", config.ready(), !1)) : (document.attachEvent("onreadystatechange", config.readyStateChange()), window.attachEvent("onload", config.ready())), readyEventHandlersInstalled = !0));    
 };
 config.uid_ck = (config.ck.match("(^|; )_uid=([^;]*)") || 0)[2];
 config.cookieC = config.ck.indexOf("_ga=") > -1 ? config.ck.toString().split("_ga=")[1].split(";")[0].split(/GA[0-9]\.[0-9]\./)[1] : "";
@@ -95,9 +92,8 @@ $LAB
     .script(config.plugins_path)
     .script("//www.google-analytics.com/cx/api.js?experiment=" + config.expId).wait(function(){
             config.expVar = cxApi.chooseVariation();
-            cxApi.setChosenVariation(config.expVar, config.expId);
-            console.log('xx');
-            config._rr(console.log,expVar);            
+            cxApi.setChosenVariation(config.expVar, config.expId);            
+            config._rr(console.log('вывод тут'));
         })
     .script("//www.google-analytics.com/analytics" + (config.debug == true ? "_debug" : "") + ".js").wait(function() {
         var tracker = ga.create(config.tracker_id, config.highest_level_domain, {
@@ -134,8 +130,7 @@ $LAB
         });
         config._rr(ga,config.tracker_name + ".GA_data:write_plain");        
         config.sb = $LAB.sandbox();
-        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));
-        config.sb
+        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));        
     })
     .script("//mc.yandex.ru/metrika/watch.js")
     .script("//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""));
