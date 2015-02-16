@@ -1,7 +1,7 @@
 var dataLayer = [],
 config = {                
     startTime: new Date().getTime(),
-    plugins_path : 'minified/libs_min.js',
+    plugins_path : 'minified/libs.js',
     ck: document.cookie,
     loc: window.location,
     ref: document.referrer,

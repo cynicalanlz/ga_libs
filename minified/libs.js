@@ -608,28 +608,19 @@ var Scroll_tr = function(c, d) {
 		cookieName: "_scroll_tr_ck"
 	};
 	this.lastScroll = null;
-	this.viewportHeight = 0;
-	this.pageHeight = 0;
-	this.clientHeight = 0;
+	this.viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight || 0;
+	this.pageHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
+	this.clientHeight = document.documentElement.clientTop || 0;		
 };
 Scroll_tr.prototype.init = function(d) {		
 	window.config.lastScroll = this.lastScroll;		
-	this.viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight || 0;
-	this.pageHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
-	this.clientHeight = document.documentElement.clientTop || 0;	
 	if (typeof d == typeof {}) {
 		for (var e in d) {
 			if (d.hasOwnProperty(e)) {
 				this.defaultOptions[e] = d[e];
 			}
 		}
-	}
-	if (typeof this.options.callback == "function") {
-		var f = this.callback();
-		if (f !== false) {
-			this.options.callback.call(window, f);
-		}
-	}
+	}	
 	this.processScroll();
 	return this;
 };
@@ -693,6 +684,7 @@ Scroll_tr.prototype.scrollPercentByInterval = function(c) {
 Scroll_tr.prototype.setCookie = function(i, g, f, h) {
 	i = parseInt(i);
 	var e = this.readCookie();
+	console.log( "scrollpercent = " +  e.scrollPercent + ", i = " + i);
 	if (i > e.scrollPercent || h === true) {
 		expire_time = new Date;
 		expire_time.setTime(expire_time.getTime() + 60 * 60000);
@@ -706,7 +698,7 @@ Scroll_tr.prototype.setCookie = function(i, g, f, h) {
 	}
 };
 Scroll_tr.prototype.readCookie = function() {
-	var b = (this.ck.match("(^|; )" + this.defaultOptions.cookieName + "=([^;]*)") || 0)[2];
+	var b = (document.cookie.match("(^|; )" + this.defaultOptions.cookieName + "=([^;]*)") || 0)[2];
 	if (b === undefined) {
 		b = "0|||";
 	}

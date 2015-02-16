@@ -120,10 +120,13 @@ $LAB
             cookieExpires: config.dz * 24 * 60 * 60,
             allowAnchor: true
         });
+        config.uid = {
+            'userId': tracker.get('clientId')
+        };
         config.expVar = cxApi.chooseVariation();
         cxApi.setChosenVariation(config.expVar, config.expId);                    
         tracker.set('expId', config.expId);
-        tracker.set('expVar', config.expVar);
+        tracker.set('expVar', config.expVar);        
         ga(config.tracker_name + ".require", "displayfeatures");
         ga(config.tracker_name + ".require", "Monster", config);
         ga(config.tracker_name + ".require", "GA_data", config);
@@ -131,10 +134,7 @@ $LAB
         ga(config.tracker_name + ".Monster:getBestInfo");
         ga(config.tracker_name + ".Monster:preMonster");
         ga(config.tracker_name + ".GA_data:fire");        
-        ga(config.tracker_name + ".Monster:dirmonURL");
-        config.uid = {
-            'userId': tracker.get('clientId')
-        };
+        ga(config.tracker_name + ".Monster:dirmonURL");        
         (window["yandex_metrika_callbacks"] = window["yandex_metrika_callbacks"] || []).push(function() {
             window["yaCounter" + config.yam_id] = new Ya.Metrika({
                 id: config.yam_id,
@@ -146,19 +146,22 @@ $LAB
             });
         });
         config._rr(true, function (){
+            
+            config.getHeader();
+            config.checkErrors();       
+            ga(config.tracker_name + ".Scroll_tr:init");
+            window.onscroll = function() {
+                ga(config.tracker_name + ".Scroll_tr:fire");
+            };        
+
             switch (config.expVar){
                 case 0 : 
                     console.log('default option showed'); break;
                 case 1 :
                     console.log('вывод 2');break;                         
             }
-            config.getHeader();
-            config.checkErrors();               
         }); 
-        ga(config.tracker_name + ".Scroll_tr:init");
-        window.onscroll = function() {
-            ga(config.tracker_name + ".Scroll_tr:fire");
-        };
+
         config.sb = $LAB.sandbox();
         config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));        
     })
