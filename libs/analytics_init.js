@@ -24,22 +24,37 @@ if (typeof config.metas != "undefined") {
 config.readyList = [];
 config.readyFired = false;
 config.readyEventHandlersInstalled = false;
-config.ready = function() {
-    if (!config.readyFired) {
-        config.readyFired = !0;
-        console.log(config.readyList[a]);
-        for (var a = config.readyList.length; a--;) config.readyList[a].fn.call(window, config.readyList[a].cxt);
-        config.readyList = [];
+config.compl = function (){        
+   if (!config.readyComplete) {        
+        config.readyComplete = !0;        
+        for (var a = config.readyList.length; a--;){
+            config.readyList[a].fn.call(window, config.readyList[a].cxt);                             
+        }         
+        config.readyList = []; 
+   } 
+};
+config.ready = function() {          
+    if (!config.readyFired) {            
+        config.readyFired = !0;        
+        for (var a = config.readyList.length; a--;){            
+            if(config.readyList[a].inx){                                
+                config.readyList[a].fn.call(window, config.readyList[a].cxt);       
+                config.readyList.splice(a,1);                                                               
+            }            
+        }                                         
+    }    
+    if (!config.readyComplete){        
+        /^co/.test(document.readyState) && config.compl();
     }
 };
-config.readyStateChange = function() {
-    /^in|^co/.test(document.readyState)&&config.ready();      
+config.readyStateChange = function() { 
+    switch(config.expVar){
+        case "complete":config.ready();break;
+        case "interactive":config.compl()
+    };    
 };
-config._rr = function(a,cxt) {
-    config.readyFired ? setTimeout(a, 1) : (config.readyList.push({
-        fn: a,
-        cxt : cxt
-    }), /^in|^co/.test(document.readyState) ? setTimeout(config.ready(), 1) : readyEventHandlersInstalled || (document.addEventListener ? (document.addEventListener("DOMContentLoaded", config.ready(), !1), window.addEventListener("load", config.ready(), !1)) : (document.attachEvent("onreadystatechange", config.readyStateChange()), window.attachEvent("onload", config.ready())), readyEventHandlersInstalled = !0));
+config._rr = function(inx, a, cxt) {   
+    config.readyComplete||config.readyFired&&inx?setTimeout(function(){a(cxt)},1):(config.readyList.push({fn:a,cxt:cxt,inx:inx}),/^in|^co/.test(document.readyState)&&setTimeout(config.ready,1),config.readyEventHandlersInstalled||(document.addEventListener?(document.addEventListener("DOMContentLoaded",config.ready,!1),window.addEventListener("load",config.compl,!1)):(document.attachEvent("onreadystatechange",config.readyStateChange),window.attachEvent("onload",config.compl)),config.readyEventHandlersInstalled=!0));
 };
 config.uid_ck = (config.ck.match("(^|; )_uid=([^;]*)") || 0)[2];
 config.cookieC = config.ck.indexOf("_ga=") > -1 ? config.ck.toString().split("_ga=")[1].split(";")[0].split(/GA[0-9]\.[0-9]\./)[1] : "";
@@ -58,9 +73,13 @@ config.createCookie = function(name, value, days) {
 if (typeof config.uid_ck === "undefined") {
     config.uid_ck = config.createCookie("_uid", Math.floor((Math.random() * 1000000000) + 1) + "." + new Date().getTime(), config.dz);
 }
+config.getHeader = function () {
+    config.metas.header.all = document.getElementsByTagName("h1");
+    0<config.metas.header.all.length&&(config.metas.header.text=""!=config.metas.header.all[0].innerHTML?config.metas.header.all[0].innerHTML:"(not set)",config.metas.count.header=config.metas.header.all.length);
+};
 config.checkErrors = function() {
     if (config.metas.count.desc == 0 || config.metas.count.desc > 1 || config.metas.desc == "(not set)") {
-        config.errMsg = config.loc.href + " has " + config.metas.count.desc + " description tags and first tag is " + ((config.metas.desc == "(not set)") ? "not set" : "set");
+        config.errMsg = config.loc.href + " has " + config.metas.count.desc + " description tags and first tag is " + ((config.metas.desc == "(not set)") ? "not set" : "set");        
         ga(config.tracker_name + ".send", "exception", {
             "exFatal": false,
             "exDescription": config.errMsg,
@@ -68,7 +87,7 @@ config.checkErrors = function() {
         });
     }
     if (config.metas.count.keywords == 0 || config.metas.count.keywords > 1 || config.metas.keywords == "(not set)") {
-        config.errMsg = config.loc.href + " has " + config.metas.count.keywords + " keywords tags and first tag is " + ((config.metas.keywords == "(not set)") ? "not set" : "set");
+        config.errMsg = config.loc.href + " has " + config.metas.count.keywords + " keywords tags and first tag is " + ((config.metas.keywords == "(not set)") ? "not set" : "set");        
         ga(config.tracker_name + ".send", "exception", {
             "exFatal": false,
             "exDescription": config.errMsg,
@@ -76,7 +95,7 @@ config.checkErrors = function() {
         });
     }
     if (config.metas.count.header == 0 || config.metas.count.header > 1 || config.metas.header.text == "(not set)") {
-        config.errMsg = config.loc.href + " has " + config.metas.count.header + " h1 tags and first tag is " + ((config.metas.header.text == "(not set)") ? "not set" : "set");
+        config.errMsg = config.loc.href + " has " + config.metas.count.header + " h1 tags and first tag is " + ((config.metas.header.text == "(not set)") ? "not set" : "set");        
         ga(config.tracker_name + ".send", "exception", {
             "exFatal": false,
             "exDescription": config.errMsg,
@@ -93,24 +112,20 @@ window[config.ga_object] = window[config.ga_object] || function() {
     event: "gtm.js"
 });
 $LAB    
-    .script(config.plugins_path)
+    .script(config.plugins_path)    
     .script("//www.google-analytics.com/analytics" + (config.debug == true ? "_debug" : "") + ".js").wait(function() {
-        var tracker = ga.create(config.tracker_id, config.highest_level_domain, {
+        var tracker = ga.create(config.tracker_id, config.highest_level_domain,{
             name: config.tracker_name,
             cookieExpires: config.dz * 24 * 60 * 60,
             allowAnchor: true
-        });
+        });        
         ga(config.tracker_name + ".require", "displayfeatures");
         ga(config.tracker_name + ".require", "Monster", config);
         ga(config.tracker_name + ".require", "GA_data", config);
         ga(config.tracker_name + ".require", "Scroll_tr", config);
         ga(config.tracker_name + ".Monster:getBestInfo");
         ga(config.tracker_name + ".Monster:preMonster");
-        ga(config.tracker_name + ".GA_data:fire");
-        ga(config.tracker_name + ".Scroll_tr:init");
-        window.onscroll = function() {
-            ga(config.tracker_name + ".Scroll_tr:fire");
-        };
+        ga(config.tracker_name + ".GA_data:fire");        
         ga(config.tracker_name + ".Monster:dirmonURL");
         config.uid = {
             'userId': tracker.get('clientId')
@@ -125,7 +140,26 @@ $LAB
                 params: config.uid || {}
             });
         });
-        config._rr(ga,config.tracker_name + ".GA_data:write_plain");
+        config._rr(true,
+                function(){                
+                    ga(config.tracker_name + ".GA_data:write_plain");
+                    switch (config.expVar){
+                        case 0 : 
+                            console.log('default option showed'); break;
+                        case 1 :
+                            console.log('вывод 2');break;                         
+
+                    }
+                    config.getHeader();
+                    config.checkErrors();               
+                }                
+            );
+        config._rr(false, function(){        
+            ga(config.tracker_name + ".Scroll_tr:init");
+            window.onscroll = function() {
+                ga(config.tracker_name + ".Scroll_tr:fire");
+            };            
+        });        
     })
     .script("//mc.yandex.ru/metrika/watch.js")
     .script("//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""));

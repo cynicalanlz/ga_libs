@@ -11,9 +11,10 @@ config = {
             all: 0,
             desc: 0,
             keywords: 0
-        }
+        },
+        header : {}
     },
-    debug: true,
+    debug: false,
     tagmanager_id: "GTM-5V8S4F",
     tracker_id: "UA-28849482-1",
     yam_id: "12251719",
@@ -24,6 +25,7 @@ config = {
     dz: 1460,
     uid_in: 0,
     uid_enc_out_tag: "registrationId",
-    uid_plain_out_tag: "uid_out"
+    uid_plain_out_tag: "uid_out",
+    readyComplete : false
 },
 uid_set, tag_loaded;
