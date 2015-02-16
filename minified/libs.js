@@ -719,7 +719,7 @@ Scroll_tr.prototype.readCookie = function() {
 };
 Scroll_tr.prototype.processScroll = function() {
 	if (window.config.lastScroll === null || (new Date).getTime() - window.config.lastScroll >= parseInt(this.trackDelay)) {
-		this.setCookie(this.scrollPercentByInterval(this.defaultOptions.percentInterval), this.loc.href.split('#')[0], this.loc.pathname);
+		this.setCookie(this.scrollPercentByInterval(this.defaultOptions.percentInterval), this.loc.href, this.loc.pathname);
 	}
 };
 Scroll_tr.prototype.debugProcessScroll = function() {

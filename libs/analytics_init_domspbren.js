@@ -153,15 +153,12 @@ $LAB
                     console.log('вывод 2');break;                         
             }
             config.getHeader();
-            config.checkErrors();   
-            ga(config.tracker_name + ".GA_data:write_plain");
-        } 
-        config._rr(false, function(){        
-            ga(config.tracker_name + ".Scroll_tr:init");
-            window.onscroll = function() {
-                ga(config.tracker_name + ".Scroll_tr:fire");
-            };            
-        });
+            config.checkErrors();               
+        }); 
+        ga(config.tracker_name + ".Scroll_tr:init");
+        window.onscroll = function() {
+            ga(config.tracker_name + ".Scroll_tr:fire");
+        };
         config.sb = $LAB.sandbox();
         config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));        
     })

@@ -6,13 +6,15 @@
     <meta content="s2342dsad" name="keywords"/>
     <title>Test</title>    
     <script type="text/javascript" src="minified/lab_min.js"></script>
-    <script type="text/javascript"><?php
+    <script type="text/javascript">
+    <?php
             $analytics_config   =   'configs/analytics_config_domspbren_min.js';
             $analytics_init     =   'libs/analytics_init_domspbren_min.js';
             if (file_exists($analytics_config) && file_exists($analytics_init)){
                 include($analytics_config);include($analytics_init);                
             }          
-    ?></script>    
+    ?>
+    </script>    
 </head>
 <body>
 <noscript>
@@ -32,6 +34,6 @@
 <div id="top" style="background: #eee; height: 500px">#top</div>
 <div id="main" style="background: #ccc; height: 2000px">#main</div>
 <div style="background: #999; height: 200px; display: block;"></div>
-<img src="http://up.barfgraph.ir/up/barfgraph/Pictures/Post-Image/Trend%20color%20neon%20background002.jpg"/>
+<!--<img src="http://up.barfgraph.ir/up/barfgraph/Pictures/Post-Image/Trend%20color%20neon%20background002.jpg"/>-->
 </body>
 </html>

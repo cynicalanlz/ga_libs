@@ -1,7 +1,7 @@
 var dataLayer = [],
 config = {                
     startTime: new Date().getTime(),
-    plugins_path : 'minified/libs.js',
+    plugins_path : 'minified/libs_min.js',
     ck: document.cookie,
     loc: window.location,
     ref: document.referrer,
@@ -14,7 +14,7 @@ config = {
         },
         header : {}
     },
-    debug: false,
+    debug: true,
     tagmanager_id: "GTM-PNFDW6",
     tracker_id: "UA-41176985-1",
     yam_id: "21345325",

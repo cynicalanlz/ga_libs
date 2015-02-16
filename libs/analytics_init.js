@@ -140,26 +140,22 @@ $LAB
                 params: config.uid || {}
             });
         });
-        config._rr(true,
-                function(){                
-                    ga(config.tracker_name + ".GA_data:write_plain");
-                    switch (config.expVar){
-                        case 0 : 
-                            console.log('default option showed'); break;
-                        case 1 :
-                            console.log('вывод 2');break;                         
+        config._rr(true, function(){                
+            ga(config.tracker_name + ".GA_data:write_plain");
+            switch (config.expVar){
+                case 0 : 
+                    console.log('default option showed'); break;
+                case 1 :
+                    console.log('вывод 2');break;                         
 
-                    }
-                    config.getHeader();
-                    config.checkErrors();               
-                }                
-            );
-        config._rr(false, function(){        
-            ga(config.tracker_name + ".Scroll_tr:init");
-            window.onscroll = function() {
-                ga(config.tracker_name + ".Scroll_tr:fire");
-            };            
-        });        
+            }
+            config.getHeader();
+            config.checkErrors();               
+        });
+        ga(config.tracker_name + ".Scroll_tr:init");
+        window.onscroll = function() {
+            ga(config.tracker_name + ".Scroll_tr:fire");
+        };       
     })
     .script("//mc.yandex.ru/metrika/watch.js")
     .script("//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""));
