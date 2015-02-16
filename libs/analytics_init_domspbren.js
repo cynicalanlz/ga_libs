@@ -113,29 +113,15 @@ window[config.ga_object] = window[config.ga_object] || function() {
 });
 $LAB    
     .script(config.plugins_path)
-    .script("//www.google-analytics.com/cx/api.js?experiment=" + config.expId).wait(function(){
-            config.expVar = cxApi.chooseVariation();
-            cxApi.setChosenVariation(config.expVar, config.expId);            
-            config._rr(true,
-                function(){                
-                    switch (config.expVar){
-                        case 0 : 
-                            console.log('default option showed'); break;
-                        case 1 :
-                            console.log('вывод 2');break;                         
-
-                    }
-                    config.getHeader();
-                    config.checkErrors();               
-                }                
-            );
-        })
+    .script("//www.google-analytics.com/cx/api.js?experiment=" + config.expId)
     .script("//www.google-analytics.com/analytics" + (config.debug == true ? "_debug" : "") + ".js").wait(function() {
         var tracker = ga.create(config.tracker_id, config.highest_level_domain,{
             name: config.tracker_name,
             cookieExpires: config.dz * 24 * 60 * 60,
             allowAnchor: true
         });
+        config.expVar = cxApi.chooseVariation();
+        cxApi.setChosenVariation(config.expVar, config.expId);                    
         tracker.set('expId', config.expId);
         tracker.set('expVar', config.expVar);
         ga(config.tracker_name + ".require", "displayfeatures");
@@ -159,7 +145,17 @@ $LAB
                 params: config.uid || {}
             });
         });
-        config._rr(true, ga, config.tracker_name + ".GA_data:write_plain");
+        config._rr(true, function (){
+            switch (config.expVar){
+                case 0 : 
+                    console.log('default option showed'); break;
+                case 1 :
+                    console.log('вывод 2');break;                         
+            }
+            config.getHeader();
+            config.checkErrors();   
+            ga(config.tracker_name + ".GA_data:write_plain");
+        } 
         config._rr(false, function(){        
             ga(config.tracker_name + ".Scroll_tr:init");
             window.onscroll = function() {
