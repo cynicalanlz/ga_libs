@@ -168,12 +168,14 @@ $LAB
         config.sb = $LAB.sandbox();
         config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck)).wait(function(){
             config._rr(true, function(){
-                var phone = getElementsById("phone-header");
+                var phone = getElementById("phone-header");
                 phone.innerHTML.replace("-","");    
+                phone.textContent = phone.innerHTML;
             })
             config._rr(false, function(){
-                var phone = getElementsById("phone-header");
+                var phone = getElementById("phone-header");
                 phone.innerHTML.replace("-","");    
+                phone.textContent = phone.innerHTML;
             })
         });        
     })
