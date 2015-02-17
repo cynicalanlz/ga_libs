@@ -1,7 +1,7 @@
 var dataLayer = [],
 config = {                
     startTime: new Date().getTime(),
-    plugins_path : 'minified/libs.js',
+    plugins_path : 'minified/libs_min.js',
     ck: document.cookie,
     loc: window.location,
     ref: document.referrer,
@@ -26,7 +26,7 @@ config = {
     uid_in: 0,
     uid_enc_out_tag: "registrationId",
     uid_plain_out_tag: "uid_out",
-    expId : "YByMKfprRCStcMvK8zh1yw",
+    expId : "jgZOTGVqTVWjkqt8O2JVtA",
     readyComplete : false
 },
 uid_set, tag_loaded;

@@ -146,22 +146,25 @@ $LAB
             });
         });
         config._rr(true, function (){
-            
+            var root = document.documentElement;
+            switch (config.expVar){                
+                case 0 :                     
+                    root.className += " b-custom-header b-custom-header_var1"; 
+                    break;                
+                case 1 :
+                    root.className += " b-custom-header b-custom-header_var2";
+                    break;
+                case 2 :
+                    root.className += " b-custom-header b-custom-header_var3";
+                    break;               
+            }
             config.getHeader();
             config.checkErrors();       
             ga(config.tracker_name + ".Scroll_tr:init");
             window.onscroll = function() {
                 ga(config.tracker_name + ".Scroll_tr:fire");
             };        
-
-            switch (config.expVar){
-                case 0 : 
-                    console.log('default option showed'); break;
-                case 1 :
-                    console.log('вывод 2');break;                         
-            }
         }); 
-
         config.sb = $LAB.sandbox();
         config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));        
     })

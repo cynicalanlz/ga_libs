@@ -608,11 +608,11 @@ var Scroll_tr = function(c, d) {
 		cookieName: "_scroll_tr_ck"
 	};
 	this.lastScroll = null;
+};
+Scroll_tr.prototype.init = function(d) {		
 	this.viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight || 0;
 	this.pageHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
 	this.clientHeight = document.documentElement.clientTop || 0;		
-};
-Scroll_tr.prototype.init = function(d) {		
 	window.config.lastScroll = this.lastScroll;		
 	if (typeof d == typeof {}) {
 		for (var e in d) {
