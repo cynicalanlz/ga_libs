@@ -116,10 +116,6 @@ window[config.ga_object] = window[config.ga_object] || function() {
     "gtm.start": (new Date).getTime(),
     event: "gtm.js"
 });
-if (document.addEventListener)
-{
-    document.getElementById("header-phone").addEventListener("change",config.changeText("header-phone"),!1);
-}  
 $LAB    
     .script(config.plugins_path)
     .script("//www.google-analytics.com/cx/api.js?experiment=" + config.expId)
@@ -178,7 +174,10 @@ $LAB
         config.sb = $LAB.sandbox();
         config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck)).wait(function(){                          
             config.changeText("header-phone");
-                                          
+            if (document.addEventListener)
+            {
+                document.getElementById("header-phone").addEventListener("change",config.changeText("header-phone"),!1);
+            }                                
         });
     })
     .script("//mc.yandex.ru/metrika/watch.js")
