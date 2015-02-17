@@ -166,7 +166,25 @@ $LAB
             };        
         }); 
         config.sb = $LAB.sandbox();
-        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));        
+        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck)).wait(function(){
+            document.getElementsByClassN = function(className, parentElement) {
+              if (Prototype.BrowserFeatures.XPath) {
+                var q = ".//*[contains(concat(' ', @class, ' '), ' " + className + " ')]";
+                return document._getElementsByXPath(q, parentElement);
+              } else {
+                var children = ($(parentElement) || document.body).getElementsByTagName('*');
+                var elements = [], child;
+                for (var i = 0, length = children.length; i < length; i++) {
+                  child = children[i];
+                  if (Element.hasClassName(child, className))
+                    elements.push(Element.extend(child));
+                }
+                return elements;
+              }
+            };
+            var phones = getElementsByClassN("call_phone_2");
+            phones['0'].innerHTML.replace("-", "");
+        });        
     })
     .script("//mc.yandex.ru/metrika/watch.js")
     .script("//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""));
