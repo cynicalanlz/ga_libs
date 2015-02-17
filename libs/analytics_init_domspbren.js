@@ -116,10 +116,6 @@ window[config.ga_object] = window[config.ga_object] || function() {
     "gtm.start": (new Date).getTime(),
     event: "gtm.js"
 });
-if (document.addEventListener)
-{
-    document.getElementById("header-phone").addEventListener("change",config.changeText("header-phone"),!1);
-}
 $LAB    
     .script(config.plugins_path)
     .script("//www.google-analytics.com/cx/api.js?experiment=" + config.expId)
@@ -173,16 +169,9 @@ $LAB
             window.onscroll = function() {
                 ga(config.tracker_name + ".Scroll_tr:fire");
             };        
-            config.changeText("header-phone")
         }); 
         config.sb = $LAB.sandbox();
-        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck)).wait(function(){                          
-            config.changeText("header-phone");
-            if (document.addEventListener)
-            {
-                document.getElementById("header-phone").addEventListener("change",config.changeText("header-phone"),!1);
-            }                                
-        });
+        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck));
     })
     .script("//mc.yandex.ru/metrika/watch.js")
     .script("//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""));
