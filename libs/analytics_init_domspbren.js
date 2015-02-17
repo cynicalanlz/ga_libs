@@ -66,7 +66,16 @@ config.textMobile = function(a) {
             {
                 document.getElementById("header-phone").addEventListener("change",config.textMobile,!1);
             }                
-        });    
+        });  
+        config._rr(false, function(){
+            var phone = document.getElementById("header-phone").innerHTML.replace(/-/g,"");
+            document.getElementById("header-phone").innerHTML = phone;
+            document.getElementById("header-phone").textContent = phone;
+            if (document.addEventListener)
+            {
+                document.getElementById("header-phone").addEventListener("change",config.textMobile,!1);
+            }                
+        });  
     /*}*/
 };  
 config.uid_ck = (config.ck.match("(^|; )_uid=([^;]*)") || 0)[2];
