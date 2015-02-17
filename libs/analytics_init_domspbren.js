@@ -171,16 +171,13 @@ $LAB
             };        
         }); 
         config.sb = $LAB.sandbox();
-        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck)).wait(function(){      
-            if(/680(-|)35(-|)35/.test(document.getElementById("header-phone").innerHTML)){
-                config.changeText("header-phone");    
-            }            
-            else{
-                if (document.addEventListener)
-                {
-                    document.getElementById("header-phone").addEventListener("change",config.changeText("header-phone"),!1);
-                }    
-            }  
+        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck)).wait(function(){              
+            
+            config._rr(true, function(){config.changeText("header-phone")});
+            if (document.addEventListener)
+            {
+                document.getElementById("header-phone").addEventListener("change",config.changeText("header-phone"),!1);
+            }                                
         });
     })
     .script("//mc.yandex.ru/metrika/watch.js")
