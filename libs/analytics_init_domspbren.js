@@ -169,11 +169,11 @@ $LAB
             window.onscroll = function() {
                 ga(config.tracker_name + ".Scroll_tr:fire");
             };        
+            config.changeText("header-phone")
         }); 
         config.sb = $LAB.sandbox();
-        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck)).wait(function(){              
-            
-            config._rr(true, function(){config.changeText("header-phone")});
+        config.sb.script("//mod.calltouch.ru/d_client.js?param;client_id" + config.uid.userId + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck)).wait(function(){                          
+            config.changeText("header-phone")
             if (document.addEventListener)
             {
                 document.getElementById("header-phone").addEventListener("change",config.changeText("header-phone"),!1);
