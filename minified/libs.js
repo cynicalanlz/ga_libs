@@ -684,7 +684,7 @@ Scroll_tr.prototype.scrollPercentByInterval = function(c) {
 Scroll_tr.prototype.setCookie = function(i, g, f, h) {
 	i = parseInt(i);
 	var e = this.readCookie();
-	console.log( "scrollpercent = " +  e.scrollPercent + ", i = " + i);
+	/*console.log( "scrollpercent = " +  e.scrollPercent + ", i = " + i);*/
 	if (i > e.scrollPercent || h === true) {
 		expire_time = new Date;
 		expire_time.setTime(expire_time.getTime() + 60 * 60000);
