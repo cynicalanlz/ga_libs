@@ -64,7 +64,11 @@ config.textMobile = function(a) {
             document.getElementById("header-phone").textContent = phone;
             if (document.addEventListener)
             {
-                document.getElementById("header-phone").addEventListener("change",config.textMobile,!1);
+                document.getElementById("header-phone").addEventListener("change",function(){
+                    var phone = document.getElementById("header-phone").innerHTML.replace(/-/g,"");
+            document.getElementById("header-phone").innerHTML = phone;
+            document.getElementById("header-phone").textContent = phone;
+                },!1);
             }                
         });    
     /*}*/
