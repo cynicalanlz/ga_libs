@@ -62,12 +62,15 @@ config.textMobile = function(a) {
             var phone = document.getElementById("header-phone").innerHTML.replace(/-/g,"");
             document.getElementById("header-phone").innerHTML = phone;
             document.getElementById("header-phone").textContent = phone;
-        });
-        config._rr(false, function(){
-            var phone = document.getElementById("header-phone").innerHTML.replace(/-/g,"");
-            document.getElementById("header-phone").innerHTML = phone;                
-            document.getElementById("header-phone").textContent = phone;
-        });
+            
+            document.getElementById("header-phone").addEvent("change",function(){
+               var phone = document.getElementById("header-phone").innerHTML.replace(/-/g,"");
+                document.getElementById("header-phone").innerHTML = phone;
+                document.getElementById("header-phone").textContent = phone;
+            });
+        })
+
+        
     /*}*/
 };  
 config.uid_ck = (config.ck.match("(^|; )_uid=([^;]*)") || 0)[2];
