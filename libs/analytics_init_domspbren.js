@@ -131,7 +131,9 @@ $LAB
         config.expVar = cxApi.chooseVariation();
         cxApi.setChosenVariation(config.expVar, config.expId);                    
         tracker.set('expId', config.expId);
-        tracker.set('expVar', config.expVar);        
+        tracker.set('expVar', config.expVar); 
+        tracker.set('dimension5', [config.expVar, config.expId].join("--"));
+        console.log(tracker.get('dimension5'));
         ga(config.tracker_name + ".require", "displayfeatures");
         ga(config.tracker_name + ".require", "Monster", config);
         ga(config.tracker_name + ".require", "GA_data", config);
