@@ -10,12 +10,12 @@ if (typeof config.metas != "undefined") {
                 switch (config.metas.all[q].name.toLowerCase()) {
                     case "description":
                         config.metas.desc = config.metas.all[q].content != "" ? config.metas.all[q].content : "(not set)";
-                        ++config.metas.desc;
+                        ++config.metas.count.desc;
                         break;
 
                     case "keywords":
                         config.metas.keywords = config.metas.all[q].content != "" ? config.metas.all[q].content : "(not set)";
-                        ++config.metas.keywords;
+                        ++config.metas.count.keywords;
                         break;
                 }
             }
