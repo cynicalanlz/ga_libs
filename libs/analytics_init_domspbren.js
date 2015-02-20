@@ -10,10 +10,12 @@ if (typeof config.metas != "undefined") {
                 switch (config.metas.all[q].name.toLowerCase()) {
                     case "description":
                         config.metas.desc = config.metas.all[q].content != "" ? config.metas.all[q].content : "(not set)";
+                        ++config.metas.desc;
                         break;
 
                     case "keywords":
                         config.metas.keywords = config.metas.all[q].content != "" ? config.metas.all[q].content : "(not set)";
+                        ++config.metas.keywords;
                         break;
                 }
             }
@@ -176,3 +178,5 @@ $LAB
     })
     .script("//mc.yandex.ru/metrika/watch.js")
     .script("//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""));
+
+    
