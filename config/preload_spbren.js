@@ -8,7 +8,7 @@ define("__preload", function() {
         debug: false,
         tagmanager_id: "GTM-PNFDW6",
         tracker_id: "UA-41176985-1",
-        yam_id: "28580776",
+        yam_id: "21345325",
         ga_object: "ga",
         dataLayer_var: "dataLayer",
         tracker_name: "eCommerce",
@@ -17,7 +17,6 @@ define("__preload", function() {
         uid_in: 0,
         uid_enc_out_tag: "registrationId",
         uid_plain_out_tag: "uid_out",
-        // expId: "jgZOTGVqTVWjkqt8O2JVtA",
         readyComplete: false
     };
     window.dataLayer = [];
@@ -64,6 +63,11 @@ define("__preload", function() {
             params: config.uid || {}
         });
     });
+    window.onloadCallback = function(){
+        widgetId2 = grecaptcha.render(document.getElementsByClassName('g-recaptcha')[0], {
+          'sitekey' : '6Le0FgUTAAAAADiKsFQ7k_PWquIlchvWV9TYPk_A'
+        });
+    };
     config.requirejs = {
         baseUrl: "/bitrix/templates/index/js/",
         paths: {
@@ -74,12 +78,13 @@ define("__preload", function() {
             "analytics": "//www.google-analytics.com/analytics" + (config.debug ? "_debug" : ""),
             "__postload": "analytics/min/postload_min",
             "calltouch": "//mod.calltouch.ru/d_client.js?param;client_id" + config.ga_id + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck) + ";"
-            /*,
-            "experiment": "//www.google-analytics.com/cx/api.js?experiment=" + config.expId*/
         },
-        waitSeconds: 0        
+        waitSeconds: 0,
+        encforceDefine: true
     };
     return config;
+    
+    
 });
 require(["__preload"], function(config) {
     var MergeRecursive = function(obj1, obj2) {
@@ -97,50 +102,68 @@ require(["__preload"], function(config) {
         return obj1;
     };
     config = MergeRecursive(config, {
-        requirejs: {
+        requirejs : {
             paths: {
-                "jquery":           "jquery",
-                "fotorama":         "fotorama/fotorama",
-                "nicescroll":       "jquery.nicescroll",
-                "fancybox":         "fancy/jquery.fancybox.pack",
-                "jquery.validate":  "jquery.validate/jquery.validate.min",
-                "messages":         "jquery.validate/messages_ru",
-                "jquery-ui":        "jquery-ui/jquery-ui.min",
-                "app":              "script_"
+                'jquery'          : 'jquery',
+                'fotorama'        : 'fotorama/fotorama',
+                'nicescroll'      : 'jquery.nicescroll',
+                'fancybox'        : 'fancy/jquery.fancybox.pack',
+                'jquery.validate' : 'jquery.validate/jquery.validate.min',
+                'messages'        : 'jquery.validate/messages_ru',
+                'jquery-ui'       : 'jquery-ui/jquery-ui.min',
+                'app'             : 'script_',
+                'polyfiller'      : 'webshim/js-webshim/minified/polyfiller',
+                'polyfiller-cfg'  : 'webshim/js-webshim/minified/shims/i18n/formcfg-ru',
+                'input-mask'      : 'inputmask/js/jquery.inputmask',
+                'raphael'         : '/kswidgets/raphael_module/js/vendors/raphael.min',
+                'utils'           : '/kswidgets/raphael_module/js/utils',
+                'small'           : '/kswidgets/js/small-n',
+                'recaptcha'       : 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit'
             },
             shim: {
-                "calltouch": {
-                    deps: ["jquery"]
+                'calltouch' : {
+                    deps : ['jquery']
                 },
-                "nicescroll": {
-                    deps: ["jquery"]
+                'nicescroll' : {
+                    deps: ['jquery']
                 },
-                "fotorama": {
-                    deps: ["jquery"]
+                'fotorama' : {
+                    deps: ['jquery']
                 },
-                "fancybox": {
-                    deps: ["jquery"]
+                'fancybox' : {
+                    deps: ['jquery']
                 },
-                "jquery-ui": {
-                    deps: ["jquery"]
+                'jquery-ui' : {
+                    deps: ['jquery']
                 },
-                "jquery.validate": {
-                    deps: ["jquery"]
+                'jquery.validate': {
+                    deps: ['jquery']
                 },
-                "messages": {
-                    deps: ["jquery.validate"]
+                'messages': {
+                    deps: ['jquery.validate']
+                },
+                'polyfiller-cfg': {
+                    deps: ['polyfiller']
+                },
+                'input-mask': {
+                    deps: ['jquery']
+                },
+                'raphael': {
+                    deps: ['jquery'],
+                    exports : ['raphael', 'eve']
+                },
+                'utils': {
+                    deps: ['raphael']
+                },
+                'small': {
+                    deps: ['raphael']
                 }
             },
-            deps: ["app"],
-            callback: function() {
-                if (document.readyState === "complete" && typeof window.onload == "function") {
-                    window.onload();
-                }
-            }
+            deps : ['app']
         }
     });
     require.config(config.requirejs);
-    require(["__postload", "libs", "analytics"/*, "experiment"*/], function(cfg) {
+    require(["__postload", "libs", "analytics"], function(cfg) {
         var tracker = window.ga.create({
             trackingId: cfg.tracker_id,
             cookieDomain: cfg.highest_level_domain,
@@ -149,12 +172,6 @@ require(["__preload"], function(config) {
             allowAnchor: true,
             clientId: cfg.ga_id
         });
-
-        // cfg.expVar = cxApi.chooseVariation();
-        // cxApi.setChosenVariation(cfg.expVar, cfg.expId);
-        // tracker.set("expId", cfg.expId);
-        // tracker.set("expVar", cfg.expVar);
-        // tracker.set("dimension5", [cfg.expVar, cfg.expId].join("--"));
         window.ga(cfg.tracker_name + ".require", "displayfeatures");
         window.ga(cfg.tracker_name + ".require", "Monster", cfg);
         window.ga(cfg.tracker_name + ".require", "GA_data", cfg);
@@ -166,17 +183,6 @@ require(["__preload"], function(config) {
         cfg._rr(true, function() {
             var root = document.documentElement;
             root.className += " b-custom-header b-custom-header_var4";
-            // switch (cfg.expVar) {
-            //     case 0:
-            //         root.className += " b-custom-header b-custom-header_var1";
-            //         break;
-            //     case 1:
-            //         root.className += " b-custom-header b-custom-header_var2";
-            //         break;
-            //     case 2:
-            //         root.className += " b-custom-header b-custom-header_var4";
-            //         break;
-            // }
             cfg.getHeader();
             cfg.checkErrors();
             window.ga(cfg.tracker_name + ".Scroll_tr:init");
