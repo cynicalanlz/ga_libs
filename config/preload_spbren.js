@@ -77,8 +77,7 @@ define("__preload", function() {
             /*,
             "experiment": "//www.google-analytics.com/cx/api.js?experiment=" + config.expId*/
         },
-        waitSeconds: 0,
-        encforceDefine: true
+        waitSeconds: 0        
     };
     return config;
 });
