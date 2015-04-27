@@ -1,7 +1,5 @@
 define('__postload', ['__preload'], function(config) {
 
-
-    console.log('tracker_id is:' + config.tracker_id)
     config.metas = {
             all: document.getElementsByTagName("meta"),
             count: {
