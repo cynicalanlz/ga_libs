@@ -64,9 +64,13 @@ define("__preload", function() {
         });
     });
     window.onloadCallback = function(){
-        widgetId2 = grecaptcha.render(document.getElementsByClassName('g-recaptcha')[0], {
-          'sitekey' : '6Le0FgUTAAAAADiKsFQ7k_PWquIlchvWV9TYPk_A'
-        });
+        var captcha_div = document.getElementsByClassName('g-recaptcha')[0];
+        if (captcha_div.length > 0){
+            widgetId2 = grecaptcha.render(captcha_div[0], {
+                'sitekey' : '6Le0FgUTAAAAADiKsFQ7k_PWquIlchvWV9TYPk_A'
+            });    
+        }
+        
     };
     config.requirejs = {
         baseUrl: "/bitrix/templates/index/js/",
