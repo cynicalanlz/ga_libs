@@ -84,8 +84,7 @@ define("__preload", function() {
             "__postload": "analytics/min/postload_min",
             "calltouch": "//mod.calltouch.ru/d_client.js?param;client_id" + config.ga_id + ";ref" + encodeURI(config.ref) + ";url" + encodeURI(config.loc.href.split("#")[0]) + ";cook" + encodeURI(config.ck) + ";"
         },
-        waitSeconds: 0,
-        encforceDefine: true
+        waitSeconds: 0
     };
     return config;
     
