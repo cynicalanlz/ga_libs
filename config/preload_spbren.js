@@ -64,14 +64,15 @@ define("__preload", function() {
         });
     });
     window.onloadCallback = function(){
-        var captcha_div = document.getElementsByClassName('g-recaptcha')[0];
-        if (captcha_div.length > 0){
+        var captcha_div = document.getElementsByClassName('g-recaptcha');
+        if (typeof captcha_div !== 'undefined' && captcha_div.length > 0){
             widgetId2 = grecaptcha.render(captcha_div[0], {
                 'sitekey' : '6Le0FgUTAAAAADiKsFQ7k_PWquIlchvWV9TYPk_A'
             });    
         }
         
-    };
+    };    
+
     config.requirejs = {
         baseUrl: "/bitrix/templates/index/js/",
         paths: {
@@ -132,7 +133,8 @@ require(["__preload"], function(config) {
                     deps: ['jquery']
                 },
                 'fotorama' : {
-                    deps: ['jquery']
+                    deps: ['jquery'],
+                    exports: 'fotorama'
                 },
                 'fancybox' : {
                     deps: ['jquery']
@@ -154,7 +156,7 @@ require(["__preload"], function(config) {
                 },
                 'raphael': {
                     deps: ['jquery'],
-                    exports : ['raphael', 'eve']
+                    exports : ['Raphael', 'eve']
                 },
                 'utils': {
                     deps: ['raphael']
@@ -163,7 +165,10 @@ require(["__preload"], function(config) {
                     deps: ['raphael']
                 }
             },
-            deps : ['app']
+            deps : ['app'],
+            callback: function(){                
+                (/.*exists_func.*/.test(String(window.onload)) && typeof window.onload == 'function' && /^in|^co/.test(document.readyState)) && window.onload();
+            }
         }
     });
     require.config(config.requirejs);
@@ -192,7 +197,8 @@ require(["__preload"], function(config) {
             window.ga(cfg.tracker_name + ".Scroll_tr:init");
             window.onscroll = function() {
                 window.ga(cfg.tracker_name + ".Scroll_tr:fire");
-            };
+            };            
+
         });
     });
     require(["metrika", "tagmanager"]);
