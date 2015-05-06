@@ -5,10 +5,11 @@
     <meta content="sdsad" name="description"/>
     <meta content="s2342dsad" name="keywords"/>
     <title>Test</title>        
+    <!--to-do: remove on production--><script type="text/javascript" src="//localhost:35729/livereload.js"></script>
     <script type="text/javascript">
          <?php            
-            $requirejs = getcwd() .'\min\require.min.js';
-            $analytics_preload  = getcwd() . '\config\preload_spbren_min.js';               
+            $requirejs = getcwd() .'\js\analytics\min\require.min.js';
+            $analytics_preload  = getcwd() . '\js\analytics\config\preload_qasabo_min.js';               
             if (file_exists($requirejs) && file_exists($analytics_preload)){
                 include($requirejs);include($analytics_preload);                
             }          
@@ -16,7 +17,7 @@
     </script>    
 </head>
 <body>
-<noscript>
+<noscript> 
     <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5V8S4F" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     <div><img src="//mc.yandex.ru/watch/12251719" style="position:absolute; left:-9999px;" alt="" /></div>
 </noscript>
@@ -33,6 +34,6 @@
 <div id="top" style="background: #eee; height: 500px">#top</div>
 <div id="main" style="background: #ccc; height: 2000px">#main</div>
 <div style="background: #999; height: 200px; display: block;"></div>
-<img src="http://upload.wikimedia.org/wikipedia/commons/9/92/Big_Sur_Coast_California.JPG"/>
+<!-- <img src="http://upload.wikimedia.org/wikipedia/commons/9/92/Big_Sur_Coast_California.JPG"/> -->
 </body>
 </html>
