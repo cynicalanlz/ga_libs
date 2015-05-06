@@ -17,7 +17,7 @@
 ##production installation
 
 ```
-cd /var/www
+cd ~
 git clone -b require-qasabo http://git@github.com/cynicalanlz/ga_libs
 cd ga_libs
 mv js/analytics/ /var/www/js/analytics
