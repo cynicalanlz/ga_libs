@@ -28,6 +28,7 @@ cd ga_libs
 mv js/analytics/ /var/www/js/analytics
 mv js/main.js /var/www/js/
 mv js/jquery_min.js
+tail -n +9 index.php | head -n $((17-9+1)) >> add_to_head.html
 rm -R ga_libs
 
  
