@@ -16,11 +16,7 @@
 
 ##production installation
 
-1. Скопировать нужные файлы
-2. Добавить в ```<head>``` вместо всех тегов ```<script>``` строчки 9-17 из ```index.php```
-3. Убрать теги ```<script>``` в ```<body>```
-
-```
+1. Скопировать нужные файлы ```
 
 cd ~
 git clone -b require-qasabo http://git@github.com/cynicalanlz/ga_libs
@@ -33,6 +29,10 @@ rm -R ga_libs
 
  
 ```
+2. Добавить в ```<head>``` вместо всех тегов ```<script>``` содержимое add_to_head.html
+3. Убрать теги ```<script>``` в ```<body>```
+
+
 
 
 
