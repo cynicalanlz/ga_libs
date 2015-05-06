@@ -23,7 +23,8 @@
 cd ~
 git clone -b require-qasabo http://git@github.com/cynicalanlz/ga_libs
 cd ga_libs
-mv js/analytics/ /var/www/js/analytics
+mdkir /var/www/js/analytics
+mv js/analytics/* /var/www/js/analytics
 mv js/main.js /var/www/js/
 mv js/jquery_min.js /var/www/js
 tail -n +9 index.php | head -n $((17-9+1)) >> add_to_head.html
