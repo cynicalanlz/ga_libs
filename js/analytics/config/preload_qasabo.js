@@ -98,19 +98,35 @@ require(["__preload"], function(config) {
                 'jquery-mousewheel':  'jquery.mousewheel-3.0.6.pack',
                 'fancybox':           'jquery.fancybox.js?v=2.0.6',
                 'fancybox-thumbs':    'jquery.fancybox-thumbs.js?v =1.0.2',
+                'form':               'form',
                 'mslider':            'mslider',
                 'mousetoogle':        'mousetoogle',
-                'muploader':          '/modules/muploader/muploader',
+                'muploader':          'modules/muploader/muploader',
                 'app':                'main',
                 'jquery-backstretch': 'jquery.backstretch.min',
-                'layout-logic':       'layout-logic',
+                'layout-logic':       'layout-logic', 
                 'smoothscroll':       'smoothscroll'                
                 },
             shim: {
+                'jquery': {
+                    exports : "$"
+                },
+                'form': {
+                    deps : ['jquery']                    
+                },
+                'jquery-mousewheel' :{
+                    deps : ['jquery']
+                },
                 'mslider' : {
                     deps : ['jquery']
                 },
                 'fancybox' : {
+                    deps: ['jquery']
+                },
+                'mousetoogle': {
+                    deps: ['jquery']
+                },
+                'muploader': {
                     deps: ['jquery']
                 },
                 'fancybox-thumbs' : {
@@ -123,13 +139,13 @@ require(["__preload"], function(config) {
                     deps: ['jquery']
                 },
                 'jquery-backstretch': {
-                    deps: ['jquery.validate']
+                    deps: ['jquery']
                 },
                 'layout-logic':{
                     deps: ['jquery']
                 }
             },
-            deps : ['app']            
+            deps : ['app', 'layout-logic']            
         }
     });
     require.config(config.requirejs);
