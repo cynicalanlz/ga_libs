@@ -1,5 +1,9 @@
 #Analytics install for Qasabo using requirejs
 
+##to-do:
+
+Проверить 
+
 ##production installation
 
 ```

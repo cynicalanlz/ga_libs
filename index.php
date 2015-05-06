@@ -9,7 +9,7 @@
     <script type="text/javascript">
          <?php            
             $requirejs = getcwd() .'\js\analytics\min\require.min.js';
-            $analytics_preload  = getcwd() . '\js\analytics\config\preload_qasabo.js';               
+            $analytics_preload  = getcwd() . '\js\analytics\config\preload_qasabo_min.js';               
             if (file_exists($requirejs) && file_exists($analytics_preload)){
                 include($requirejs);include($analytics_preload);                
             }          

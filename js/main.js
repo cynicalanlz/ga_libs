@@ -6,7 +6,8 @@ define("app",[
                 'form',
                 'mslider',
                 'mousetoogle',
-                'muploader',                
+                'muploader', 
+                'layout-logic',               
                 'jquery-backstretch',
                 'smoothscroll'], 
     function($){

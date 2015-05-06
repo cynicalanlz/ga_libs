@@ -94,7 +94,7 @@ require(["__preload"], function(config) {
     config = MergeRecursive(config, {
         requirejs: {
                 paths: {
-                'jquery':             'jquery',
+                'jquery':             'jquery_min', 
                 'jquery-mousewheel':  'jquery.mousewheel-3.0.6.pack',
                 'fancybox':           'jquery.fancybox.js?v=2.0.6',
                 'fancybox-thumbs':    'jquery.fancybox-thumbs.js?v =1.0.2',
@@ -108,9 +108,6 @@ require(["__preload"], function(config) {
                 'smoothscroll':       'smoothscroll'                
                 },
             shim: {
-                'jquery': {
-                    exports : "$"
-                },
                 'form': {
                     deps : ['jquery']                    
                 },
@@ -145,10 +142,11 @@ require(["__preload"], function(config) {
                     deps: ['jquery']
                 }
             },
-            deps : ['app', 'layout-logic']            
+            deps : ['app']            
         }
     });
     require.config(config.requirejs);
+    require(["metrika", "tagmanager"]);
     require(["__postload", "libs", "analytics"], function(cfg) {
         var tracker = window.ga.create({
             trackingId: cfg.tracker_id,
@@ -179,5 +177,5 @@ require(["__preload"], function(config) {
 
         });
     });
-    require(["metrika", "tagmanager"]);
+
 });
