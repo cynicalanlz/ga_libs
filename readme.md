@@ -1,4 +1,4 @@
-#Analytics install for Qasabo using requirejs
+#Analytics 4 Qasabo
 
 
 ##done
