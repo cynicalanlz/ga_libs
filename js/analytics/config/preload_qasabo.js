@@ -145,7 +145,8 @@ require(["__preload"], function(config) {
             deps : ['app']            
         }
     });
-    require.config(config.requirejs);    
+    require.config(config.requirejs);  
+    require(['metrika', 'tagmanager']);
     require(["__postload", "libs", "analytics"], function(cfg) {
         var tracker = window.ga.create({
             trackingId: cfg.tracker_id,
