@@ -17,6 +17,8 @@
 ##production installation
 
 1. Скопировать нужные файлы
+2. Добавить в <head> вместо всех тегов <script> строчки 9-17 из index.php
+3. Убрать теги <script> в <body>
 
 ```
 
@@ -31,8 +33,6 @@ rm -R ga_libs
  
 ```
 
-2. Добавить в <head> вместо всех тегов <script> строчки 9-17 из index.php
-3. Убрать теги <script> в <body>
 
 
 ##dev environment
