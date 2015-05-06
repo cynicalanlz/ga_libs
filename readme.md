@@ -10,7 +10,7 @@
 ##to-do:
 
 + Проверить правильность переноса кода.
-+ Проверить зависимости
++ Проверить зависимости тут https://github.com/cynicalanlz/ga_libs/blob/require-qasabo/js/analytics/config/preload_qasabo.js#L110-L145
 + Убрать неактуальные зависимости
 + Установить на продакшен
 
