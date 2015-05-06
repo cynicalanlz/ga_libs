@@ -50,6 +50,10 @@ rm -R ga_libs
 #/bin/bash
 
 sudo apt-get install apache2
+cd ~
+git clone -b require-qasabo http://git@github.com/cynicalanlz/ga_libs
+cd ga_libs
+mv * /var/www/v13/
 cd v13 
 npm install
 grunt
