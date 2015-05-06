@@ -13,8 +13,6 @@ define("app",[
 
 
 
-    var menuActive=0; 
-
     // $(window).load(function(){
     //     $(".loader_bg").fadeOut("slow");
     //     $(".loader").fadeOut("slow");

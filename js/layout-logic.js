@@ -1,4 +1,7 @@
 
+
+var menuActive=0; 
+
 timer_slider = 400000000;
 var max_comm_slide = 3;
 var gallery=[{'text':'Доверительное управление квартирами в&nbsp;Санкт‑Петербурге','info':'', 'img':'/gallery/lease_slider/1_3_5611.jpg'},];
