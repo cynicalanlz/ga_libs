@@ -145,8 +145,7 @@ require(["__preload"], function(config) {
             deps : ['app']            
         }
     });
-    require.config(config.requirejs);
-    require(["metrika", "tagmanager"]);
+    require.config(config.requirejs);    
     require(["__postload", "libs", "analytics"], function(cfg) {
         var tracker = window.ga.create({
             trackingId: cfg.tracker_id,
@@ -173,8 +172,7 @@ require(["__preload"], function(config) {
             window.onscroll = function() {
                 window.ga(cfg.tracker_name + ".Scroll_tr:fire");
             };            
-            window.ga(cfg.tracker_name + ".GA_data:write_encoded")
-
+            window.ga(cfg.tracker_name + ".GA_data:write_encoded");
         });
     });
 
