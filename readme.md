@@ -1,8 +1,16 @@
 #Analytics install for Qasabo using requirejs
 
+
+##done
+
+**Минифицирован jquery
+**Скрипты из body вынесены в main.js и layout-logic.js
+
 ##to-do:
 
-Проверить 
+**Проверить правильность переноса кода.
+**Проверить зависимости
+**Установить на продакшен
 
 ##production installation
 
