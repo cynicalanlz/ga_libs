@@ -1,4 +1,4 @@
-wdefine("app",['jquery','fancybox','fancybox-thumbs','jquery-backstretch',''], function(){
+define("app",['jquery','fancybox','fancybox-thumbs','jquery-backstretch',''], function(){
     var menuActive=0; 
 
     // $(window).load(function(){
