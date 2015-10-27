@@ -1,5 +1,4 @@
-define("__preload", function() {
-    // test 
+define("__preload", function() {    
     var config = {
         startTime: new Date().getTime(),        
         ck: document.cookie,
