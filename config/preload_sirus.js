@@ -124,6 +124,8 @@ require(["__preload"], function(config) {
                 window.ga(cfg.tracker_name + ".Scroll_tr:fire");
             };            
         });
+        return cfg;
     });
+    console.log(cfg)
     require(["metrika", "tagmanager"]);
 }); 

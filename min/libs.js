@@ -312,7 +312,7 @@ define("libs", ["__postload"], function(t) {
 		var href_ = window.location.href;
 		window._monsterHash = t, window.location.replace(href_.split("#")[0] + e);		
 		this.loc.hash = e;
-		this.uidMetr["userId"] = href_.split("#")[0] + e;
+		this.uidMetr["location"] = href_.split("#")[0] + e;
 		console.log(this.uidMetr)
 		return this;
 	};
