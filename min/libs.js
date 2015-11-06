@@ -3,8 +3,7 @@ define("libs", ["__postload"], function(t) {
 		var i = window[window.GoogleAnalyticsObject || "ga"];
 		i && i("provide", t, e);
 	}
-	var s = function(t, e) {
-		console.log(e.ref);
+	var s = function(t, e) {		
 		this.tracker = t, 
 		this.uid = e.ga_id, 
 		this.isDebug = e.debug, 
