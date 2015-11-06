@@ -309,8 +309,10 @@ define("libs", ["__postload"], function(t) {
 	o.prototype.updateHash = function(t) {
 		t = t ? "/" + t : "";
 		var e = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
-		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);		
+		var href_ = window.location.href;
+		window._monsterHash = t, window.location.replace(href_.split("#")[0] + e);		
 		this.loc.hash = e;
+		this.uidMetr["userId"] = href_.split("#")[0] + e;
 		console.log(this.uidMetr)
 		return this;
 	};
