@@ -19,7 +19,7 @@ define("libs", ["__postload"], function(t) {
 		this.uid_ = e.uid_, 
 		this.uid_ck = e.uid_ck;
 		this.ref = e.ref;
-		this.loc = document.location;
+		this.loc = e.loc;
 	};
 	s.prototype.ZdigitToInt = function(t) {
 		for (var e = 0; e < this.Zinfo.digits.length; e++) {
@@ -308,7 +308,8 @@ define("libs", ["__postload"], function(t) {
 	o.prototype.updateHash = function(t) {
 		t = t ? "/" + t : "";
 		var e = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
-		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);		
+		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);
+		console.log(this);
 	};
 	o.prototype.preMonster = function(e) {
 		if ("" === this.ref && -1 === this.loc.hash.search(/(\?|&|#)(utm_source|dclid|gclid)=/) && this.cookieC !== this.urlRefc) {
