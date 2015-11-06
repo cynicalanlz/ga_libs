@@ -114,16 +114,15 @@ require(["__preload"], function(config) {
             };            
         });
         (window["yandex_metrika_callbacks"] = window["yandex_metrika_callbacks"] || []).push(function() {
-            window["yaCounter" + config.yam_id] = new Ya.Metrika({
-                id: config.yam_id,
+            window["yaCounter" + cfg.yam_id] = new Ya.Metrika({
+                id: cfg.yam_id,
                 webvisor: true,
                 clickmap: true,
                 trackLinks: true,
                 accurateTrackBounce: true,
                 params: cfg.uid || {}
             });
-        });
-        console.log(window["yandex_metrika_callbacks"][0]);
+        });        
         require(["metrika", "tagmanager"]);        
     });    
 }); 
