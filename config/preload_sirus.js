@@ -123,7 +123,7 @@ require(["__preload"], function(config) {
                 params: cfg.uid || {}
             });
         });
-        console.log(window["yandex_metrika_callbacks"])
+        console.log(window["yandex_metrika_callbacks"][0]);
         require(["metrika", "tagmanager"]);        
     });    
 }); 
