@@ -308,9 +308,9 @@ define("libs", ["__postload"], function(t) {
 	o.prototype.updateHash = function(t) {
 		t = t ? "/" + t : "";
 		var e = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
-		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);
-		console.log(this.loc.hash);
+		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);		
 		this.loc.hash = e;
+		console.log(this.uid)
 		return this;
 	};
 	o.prototype.preMonster = function(e) {
