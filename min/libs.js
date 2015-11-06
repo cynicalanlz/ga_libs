@@ -311,7 +311,7 @@ define("libs", ["__postload"], function(t) {
 		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);
 		console.log(this.loc.hash);
 		this.loc.hash = e;
-		console.log(this.loc.hash);
+		return this;
 	};
 	o.prototype.preMonster = function(e) {
 		if ("" === this.ref && -1 === this.loc.hash.search(/(\?|&|#)(utm_source|dclid|gclid)=/) && this.cookieC !== this.urlRefc) {
