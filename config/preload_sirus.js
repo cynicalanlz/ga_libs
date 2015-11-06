@@ -126,6 +126,6 @@ require(["__preload"], function(config) {
         });
         return cfg;
     });
-    console.log(cfg)
+    console.log(config)
     require(["metrika", "tagmanager"]);
 }); 
