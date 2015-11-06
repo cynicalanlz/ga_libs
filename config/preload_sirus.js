@@ -97,7 +97,7 @@ define("__preload", function() {
 });
 require(["__preload"], function(config) {       
     require.config(config.requirejs);
-    cfg = require(["__postload", "libs", "analytics"], function(cfg) {
+    require(["__postload", "libs", "analytics"], function(cfg) {
         var tracker = window.ga.create({
             trackingId: cfg.tracker_id,
             cookieDomain: cfg.highest_level_domain,
@@ -126,6 +126,6 @@ require(["__preload"], function(config) {
         });
         return cfg;
     });
-    console.log(cfg)
+    console.log(config)
     require(["metrika", "tagmanager"]);
 }); 
