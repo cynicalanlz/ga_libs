@@ -114,8 +114,8 @@ require(["__preload"], function(config) {
         window.ga(cfg.tracker_name + ".require", "Scroll_tr", cfg);
         window.ga(cfg.tracker_name + ".Monster:getBestInfo");
         window.ga(cfg.tracker_name + ".Monster:preMonster");
-        window.ga(cfg.tracker_name + ".Monster:dirmonURL");
-        window.ga(cfg.tracker_name + ".GA_data:fire");        
+        window.ga(cfg.tracker_name + ".GA_data:fire");  
+        window.ga(cfg.tracker_name + ".Monster:dirmonURL");      
         cfg._rr(true, function() {            
             cfg.getHeader();
             cfg.checkErrors();            
