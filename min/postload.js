@@ -98,15 +98,6 @@ define('__postload', ['__preload'], function(config) {
                 "nonInteraction":true
             });
         }
-        if (config.metas.count.keywords == 0 || config.metas.count.keywords > 1 || config.metas.keywords == "(not set)") {
-            config.errMsg = config.loc.href + " has " + config.metas.count.keywords + " keywords tags and first tag is " + ((config.metas.keywords == "(not set)") ? "not set" : "set");
-            window.ga(config.tracker_name + ".send", "exception", {
-                "exFatal": false,
-                "exDescription": config.errMsg,
-                "useBeacon": true,
-                "nonInteraction":true
-            });
-        }
         if (config.metas.count.header == 0 || config.metas.count.header > 1 || config.metas.header.text == "(not set)") {
             config.errMsg = config.loc.href + " has " + config.metas.count.header + " h1 tags and first tag is " + ((config.metas.header.text == "(not set)") ? "not set" : "set");
             window.ga(config.tracker_name + ".send", "exception", {
