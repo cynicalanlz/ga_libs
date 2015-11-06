@@ -305,10 +305,12 @@ define("libs", ["__postload"], function(t) {
 		}
 		return e;
 	};
-	o.prototype.updateHash = function(t) {
+	o.prototype.updateHash = function(t,e) {
 		t = t ? "/" + t : "";
-		var e = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
-		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);
+		var q = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
+		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + q);
+		this.loc.hash = q;
+
 	};
 	o.prototype.preMonster = function() {
 		if ("" === this.ref && -1 === this.loc.hash.search(/(\?|&|#)(utm_source|dclid|gclid)=/) && this.cookieC !== this.urlRefc) {
