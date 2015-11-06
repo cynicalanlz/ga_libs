@@ -66,7 +66,9 @@ define("__preload", function() {
     config.ga_id = ga_present ? config.cookieC : config.uid_ck;
 
     config.uid = {
-        "userId": config.ga_id
+        "userId": config.ga_id,
+        "referrer" : config.ref != "" ?  config.ref : "(not set)",
+        "location" : config.loc.hostname+config.loc.pathname+config.loc.search+config.loc.hash
     };
 
     (window["yandex_metrika_callbacks"] = window["yandex_metrika_callbacks"] || []).push(function() {
