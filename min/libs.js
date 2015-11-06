@@ -310,6 +310,7 @@ define("libs", ["__postload"], function(t) {
 		var q = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
 		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + q);
 		this.loc.hash = q;
+		e.loc.hash = q;
 
 	};
 	o.prototype.preMonster = function() {
