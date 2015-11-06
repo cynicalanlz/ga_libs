@@ -116,6 +116,7 @@ define("libs", ["__postload"], function(t) {
 		this.enginesAndQueryParams = "daum:q= eniro:search_word= naver:query= pchome:q= images.google:q= google:q= yahoo:p= yahoo:q= msn:q= bing:q= aol:query= aol:q= lycos:q= lycos:query= ask:q= netscape:query= cnn:query= about:terms= mamma:q= voila:rdata= virgilio:qs= live:q= baidu:wd= alice:qs= yandex:text= najdi:q= seznam:q= rakuten:qt= biglobe:q= goo.ne:MT= wp:szukaj= onet:qt= yam:k= kvasir:q= ozu:q= terra:query= rambler:query= conduit:q= babylon:q= search-results:q= avg:q= comcast:q= incredimail:q= startsiden:q= go.mail.ru:q= search.centrum.cz:q= 360.cn:q=".split(" ");
 		this.urlRefc = e.urlRefc;
 		this.cookieC = e.cookieC;
+		this.uidMetr = e.uid;
 	};
 
 
@@ -310,7 +311,7 @@ define("libs", ["__postload"], function(t) {
 		var e = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
 		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);		
 		this.loc.hash = e;
-		console.log(this.uid)
+		console.log(this.uidMetr)
 		return this;
 	};
 	o.prototype.preMonster = function(e) {
