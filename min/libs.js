@@ -69,8 +69,12 @@ define("libs", ["__postload"], function(t) {
 		0 != this.uid_in && this.tracker.set("userId", this.uid_in);
 		this.tracker.set("dimension3", this.metas.desc);
 		this.tracker.set("dimension4", this.metas.keywords);
-		this.tracker.set("dimension5", this.loc.hostname+this.loc.pathname+this.loc.search+this.loc.hash);
-		this.tracker.set("dimension6", this.ref != "" ?  this.ref : "(not set)");
+		var rc_v = this.loc.hostname+this.loc.pathname+this.loc.search+this.loc.hash;		
+		var ref_v = this.ref != "" ?  this.ref : "(not set)";
+		this.tracker.set("dimension5", rc_v);
+		this.tracker.set("dimension7", rc_v);
+		this.tracker.set("dimension6", ref_v);
+		this.tracker.set("dimension8", ref_v);
 		this.debugMessage(this.tracker.get("dimension1") + " - " + this.tracker_name + " dimension set - " + this.uid + " - " + this.tracker.get("screenResolution") + " - " + this.metas.desc + " - " + this.metas.keywords + " - " + this.tracker.get("dimension3") + " - " + this.tracker.get("dimension4") + " - " + this.tracker.get("dimension5") + " - " + this.tracker.get("dimension6")); 
 		this.tracker.send("pageview", {
 			hitCallback: function() {
