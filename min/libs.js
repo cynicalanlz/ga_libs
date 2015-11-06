@@ -19,7 +19,7 @@ define("libs", ["__postload"], function(t) {
 		this.uid_ = e.uid_, 
 		this.uid_ck = e.uid_ck;
 		this.ref = e.ref;
-		this.loc = e.loc;
+		this.loc = document.location;
 	};
 	s.prototype.ZdigitToInt = function(t) {
 		for (var e = 0; e < this.Zinfo.digits.length; e++) {
@@ -305,12 +305,11 @@ define("libs", ["__postload"], function(t) {
 		}
 		return e;
 	};
-	o.prototype.updateHash = function(t,q) {
+	o.prototype.updateHash = function(t) {
 		t = t ? "/" + t : "";
 		var e = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
 		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);
-		console.log(e);
-		console.log(q);
+		console.log(e);		
 		q.loc.hash = e;
 		this.loc.hash = e;
 
@@ -327,7 +326,7 @@ define("libs", ["__postload"], function(t) {
 				n = "";
 			this.loc.hash.indexOf("#g=") > -1 && (t = "gclid=" + this.demixed(this.loc.hash.split("#g=")[1].split(/&m=|&cp=|&ct=|&st=|&rf=/)[0])), this.loc.hash.indexOf("#d=") > -1 && (e = "dclid=" + this.demixed(this.loc.hash.split("#d=")[1].split(/&m=|&cp=|&ct=|&st=|&rf=/)[0])), this.loc.hash.indexOf("#sr=") > -1 && (i = "utm_source=" + this.demixed(this.loc.hash.split("#sr=")[1].split(/&m=|&cp=|&ct=|&st=|&rf=/)[0])), this.loc.hash.indexOf("&m=") > -1 && (s = "&utm_medium=" + this.demixed(this.loc.hash.split("&m=")[1].split(/&m=|&cp=|&ct=|&st=|&rf=/)[0])), this.loc.hash.indexOf("&cp=") > -1 && (o = "&utm_campaign=" + this.demixed(this.loc.hash.split("&cp=")[1].split(/&m=|&cp=|&ct=|&st=|&rf=/)[0])), this.loc.hash.indexOf("&ct=") > -1 && (r = "&utm_content=" + this.demixed(this.loc.hash.split("&ct=")[1].split(/&m=|&cp=|&ct=|&st=|&rf=/)[0])), this.loc.hash.indexOf("&st=") > -1 && (c = "&utm_term=" + this.demixed(this.loc.hash.split("&st=")[1].split(/&m=|&cp=|&ct=|&st=|&rf=/)[0])), this.loc.hash.indexOf("&rf=") > -1 && (n = "&rf=" + this.loc.hash.split("&rf=")[1].split(/&m=|&cp=|&ct=|&st=/)[0]);
 			var h = e + t + i + s + o + c + r + n;
-			this.updateHash(h,e);
+			this.updateHash(h);
 		}
 		this.loc.href.search(/#(utm_source|gclid|dclid)=/) > -1 && this.cookieC === this.urlRefc && window.location.hash && this.updateHash("");
 	};
