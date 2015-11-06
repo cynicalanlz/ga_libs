@@ -305,12 +305,11 @@ define("libs", ["__postload"], function(t) {
 		}
 		return e;
 	};
-	o.prototype.updateHash = function(t,e) {
+	o.prototype.updateHash = function(t) {
 		t = t ? "/" + t : "";
-		var q = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
-		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + q);
-		console.log(q);
-		this.loc.hash = q;		
+		var e = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
+		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);
+		console.log(e);
 
 	};
 	o.prototype.preMonster = function() {
