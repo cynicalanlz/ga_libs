@@ -5,7 +5,7 @@ define("__preload", function() {
         loc: window.location,
         ref: document.referrer,
         debug: false,
-        tagmanager_id: "GTM-5V8S4F",
+        tagmanager_id: "GTM-K7VX2K",
         tracker_id: "UA-65448078-1",
         yam_id: "10213663",
         ga_object: "ga",
