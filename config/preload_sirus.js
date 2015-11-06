@@ -70,17 +70,6 @@ define("__preload", function() {
         "referrer" : config.ref != "" ?  config.ref : "(not set)",
         "location" : config.loc.hostname+config.loc.pathname+config.loc.search+config.loc.hash
     };
-
-    (window["yandex_metrika_callbacks"] = window["yandex_metrika_callbacks"] || []).push(function() {
-        window["yaCounter" + config.yam_id] = new Ya.Metrika({
-            id: config.yam_id,
-            webvisor: true,
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            params: config.uid || {}
-        });
-    });
     config.requirejs = {
         baseUrl: "/js/",
         paths: {
@@ -134,6 +123,7 @@ require(["__preload"], function(config) {
                 params: cfg.uid || {}
             });
         });
+        console.log("yandex_metrika_callbacks")
         require(["metrika", "tagmanager"]);        
     });    
 }); 
