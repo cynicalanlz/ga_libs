@@ -309,7 +309,8 @@ define("libs", ["__postload"], function(t) {
 		t = t ? "/" + t : "";
 		var e = ["#", (window.location.hash || "#").split("#")[1].split("/")[0], t].join("");
 		window._monsterHash = t, window.location.replace(window.location.href.split("#")[0] + e);
-		console.log(this.loc.hash); 
+		console.log(this.loc.hash);
+		this.loc.hash = e; 
 	};
 	o.prototype.preMonster = function(e) {
 		if ("" === this.ref && -1 === this.loc.hash.search(/(\?|&|#)(utm_source|dclid|gclid)=/) && this.cookieC !== this.urlRefc) {
