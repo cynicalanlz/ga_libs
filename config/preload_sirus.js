@@ -124,8 +124,16 @@ require(["__preload"], function(config) {
                 window.ga(cfg.tracker_name + ".Scroll_tr:fire");
             };            
         });
-        return cfg;
-    });
-    console.log(config)
-    require(["metrika", "tagmanager"]);
+        (window["yandex_metrika_callbacks"] = window["yandex_metrika_callbacks"] || []).push(function() {
+            window["yaCounter" + config.yam_id] = new Ya.Metrika({
+                id: config.yam_id,
+                webvisor: true,
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true,
+                params: cfg.uid || {}
+            });
+        });
+        require(["metrika", "tagmanager"]);        
+    });    
 }); 

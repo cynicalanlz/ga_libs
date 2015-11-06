@@ -312,8 +312,7 @@ define("libs", ["__postload"], function(t) {
 		var href_ = window.location.href;
 		window._monsterHash = t, window.location.replace(href_.split("#")[0] + e);		
 		this.loc.hash = e;
-		this.uidMetr["location"] = href_.split("#")[0] + e;
-		console.log(this.uidMetr)
+		this.uidMetr["location"] = href_.split("#")[0] + e;		
 		return this;
 	};
 	o.prototype.preMonster = function(e) {
