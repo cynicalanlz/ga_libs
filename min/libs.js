@@ -4,6 +4,7 @@ define("libs", ["__postload"], function(t) {
 		i && i("provide", t, e);
 	}
 	var s = function(t, e) {
+		console.log(e.ref);
 		this.tracker = t, 
 		this.uid = e.ga_id, 
 		this.isDebug = e.debug, 
@@ -18,6 +19,8 @@ define("libs", ["__postload"], function(t) {
 		this.metas = e.metas, 
 		this.uid_ = e.uid_, 
 		this.uid_ck = e.uid_ck;
+		this.ref = e.ref;
+		this.loc = e.loc;
 	};
 	s.prototype.ZdigitToInt = function(t) {
 		for (var e = 0; e < this.Zinfo.digits.length; e++) {
@@ -67,7 +70,9 @@ define("libs", ["__postload"], function(t) {
 		0 != this.uid_in && this.tracker.set("userId", this.uid_in);
 		this.tracker.set("dimension3", this.metas.desc);
 		this.tracker.set("dimension4", this.metas.keywords);
-		this.debugMessage(this.tracker.get("dimension1") + " - " + this.tracker_name + " dimension set - " + this.uid + " - " + this.tracker.get("screenResolution") + " - " + this.metas.desc + " - " + this.metas.keywords + " - " + this.tracker.get("dimension3") + " - " + this.tracker.get("dimension4")); 
+		this.tracker.set("dimension5", this.loc.hostname+this.loc.pathname+this.loc.search+this.loc.hash);
+		this.tracker.set("dimension6", this.ref != "" ?  this.ref : "(not set)");
+		this.debugMessage(this.tracker.get("dimension1") + " - " + this.tracker_name + " dimension set - " + this.uid + " - " + this.tracker.get("screenResolution") + " - " + this.metas.desc + " - " + this.metas.keywords + " - " + this.tracker.get("dimension3") + " - " + this.tracker.get("dimension4") + " - " + this.tracker.get("dimension5") + " - " + this.tracker.get("dimension6")); 
 		this.tracker.send("pageview", {
 			hitCallback: function() {
 				t.GA_pageview_sent = "true", dataLayer.push({

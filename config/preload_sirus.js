@@ -4,7 +4,7 @@ define("__preload", function() {
         ck: document.cookie,
         loc: window.location,
         ref: document.referrer,
-        debug: false,
+        debug: true,
         tagmanager_id: "GTM-5V8S4F",
         tracker_id: "UA-28849482-1",
         yam_id: "12251719",
@@ -80,7 +80,7 @@ define("__preload", function() {
         });
     });
     config.requirejs = {
-        baseUrl: "/js/",
+        baseUrl: "/v21/js/",
         paths: {
             "__preload": "empty:",
             "tagmanager": "//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""),
