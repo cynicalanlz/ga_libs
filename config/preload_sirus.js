@@ -80,7 +80,7 @@ define("__preload", function() {
         });
     });
     config.requirejs = {
-        baseUrl: "/v21/js/",
+        baseUrl: "/js/",
         paths: {
             "__preload": "empty:",
             "tagmanager": "//www.googletagmanager.com/gtm.js?id=" + config.tagmanager_id + (config.dataLayer_var != "dataLayer" ? "&l=" + config.dataLayer_var : ""),
