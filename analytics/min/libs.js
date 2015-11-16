@@ -80,7 +80,7 @@ define("libs", ["__postload"], function(t) {
 			hitCallback: function() {
 				t.GA_pageview_sent = "true", dataLayer.push({
 					pageview: "sent",
-					this.tracker.get()									
+					tracker: this.tracker.get('trackingId')
 				});
 			},
 			useBeacon: !0
