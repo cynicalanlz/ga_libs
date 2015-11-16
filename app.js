@@ -1262,7 +1262,7 @@ define('app', [
 			}
 		})
 
-	})();
+	})(config);
    
 
 	var $filterLeft = $('.b-filter__col-left').clone();
