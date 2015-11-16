@@ -1231,8 +1231,6 @@ define('app', [
 				active_tab = th.getAttribute("data-tab");
 
 				var ntr = cfg.tracker_id.length;
-
-
 						  
 				for (var i = 0; i < tabs.length; i++) {
 					if (tabs[i].dataset.active === 'true') {
@@ -1252,7 +1250,6 @@ define('app', [
 							hitType: 'event',
 							eventCategory: 'Tabs Click',
 							eventAction: active_tab,
-							eventLabel: 'Fall Campaign',
 							nonInteraction : true
 						});
 					}
