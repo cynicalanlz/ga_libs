@@ -104,27 +104,22 @@ require(["__preload"], function(config) {
                 clientId: cfg.ga_id
             });
             window.ga(cfg.tracker_name[i] + ".require", "linker");
-            window.ga(cfg.tracker_name[i] + ".require", "displayfeatures");                        
+            window.ga(cfg.tracker_name[i] + ".require", "displayfeatures");
+            if (i==0) {
+                window.ga(cfg.tracker_name[i] + ".require", "Monster", cfg);        
+                window.ga(cfg.tracker_name[i] + ".require", "Scroll_tr", cfg);
+                window.ga(cfg.tracker_name[i] + ".Monster:getBestInfo");
+                window.ga(cfg.tracker_name[i] + ".Monster:preMonster");
+                window.ga(cfg.tracker_name[i] + ".Monster:dirmonURL");
+            }
+            if (i<ntr-1){                
+                window.ga(cfg.tracker_name[i] + ".require", "GA_data", cfg);                
+                window.ga(cfg.tracker_name[i] + ".GA_data:fire");
+            }
         }
-
-        window.ga(cfg.tracker_name[0] + ".require", "Monster", cfg);        
-        window.ga(cfg.tracker_name[0] + ".require", "Scroll_tr", cfg);
-
-        for (i=0;i<ntr-1;i++){
-            window.ga(cfg.tracker_name[i] + ".require", "GA_data", cfg);
-        }
-        
-        window.ga(cfg.tracker_name[0] + ".Monster:getBestInfo");
-        window.ga(cfg.tracker_name[0] + ".Monster:preMonster");
-        window.ga(cfg.tracker_name[0] + ".Monster:dirmonURL");
-
-        for (i=0;i<ntr-1;i++){
-            window.ga(cfg.tracker_name[i] + ".GA_data:fire");
-        }
-
         cfg._rr(true, function() {            
-            cfg.getHeader();
-            cfg.checkErrors();
+            // cfg.getHeader();
+            // cfg.checkErrors();
             window.ga(cfg.tracker_name[0] + ".Scroll_tr:init");        
             window.onscroll = function() {
                 window.ga(cfg.tracker_name[0] + ".Scroll_tr:fire");
