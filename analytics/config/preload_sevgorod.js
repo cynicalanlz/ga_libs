@@ -95,7 +95,7 @@ require(["__preload"], function(config) {
         var ntr = cfg.tracker_id.length;
         console.log(ntr); 
         for (i=0;i<ntr;i++){
-                
+
             var tracker = window.ga.create({
                 trackingId: cfg.tracker_id[i],
                 cookieDomain: cfg.highest_level_domain,
@@ -114,9 +114,9 @@ require(["__preload"], function(config) {
                 window.ga(cfg.tracker_name[0] + ".require", "Monster", cfg);        
                 window.ga(cfg.tracker_name[0] + ".require", "Scroll_tr", cfg);
                 window.ga(cfg.tracker_name[0] + ".Monster:getBestInfo");
-                window.ga(cfg.tracker_name[0] + ".Monster:preMonster");
-                window.ga(cfg.tracker_name[0] + ".Monster:dirmonURL");
+                window.ga(cfg.tracker_name[0] + ".Monster:preMonster");                
                 window.ga(cfg.tracker_name[0] + ".GA_data:fire");
+                window.ga(cfg.tracker_name[0] + ".Monster:dirmonURL");
             }
             else{
                 console.log(i);
