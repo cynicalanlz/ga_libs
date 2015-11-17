@@ -79,8 +79,8 @@ define("libs", ["__postload"], function(t) {
 		this.tracker.send("pageview", {
 			hitCallback: function() {
 				t.GA_pageview_sent = "true", dataLayer.push({
-					pageview: "sent",
-					tracker: this.tracker.get('trackingId')
+					pageview: "sent"
+					// ,tracker: this.tracker.get('trackingId')
 				});
 			},
 			useBeacon: !0
