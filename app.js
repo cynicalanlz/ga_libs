@@ -1,6 +1,6 @@
 /* jshint ignore:start */
 //jscs:disable
-define('app', [
+define('app_test', [
 	'jquery',
 	'fastclick',
 	'__preload',
@@ -1199,33 +1199,34 @@ define('app', [
 
 	})();
 
-	(function(config) {
+	(function($, config) {
 
-		var contWidth = document.getElementsByClassName('l-flat-header')[0].offsetWidth;
-		var isSmall   = contWidth < 700;
-		var width     = isSmall ? contWidth - 30 : 700;
-		document.getElementsByClassName('b-flat-info__planoplan-test')[0].offsetWidth = width;
+		$(function() {
+			var contWidth = document.getElementsByClassName('l-flat-header')[0].offsetWidth;
+			var isSmall   = contWidth < 700;
+			var width     = isSmall ? contWidth - 30 : 700;
+			document.getElementsByClassName('b-flat-info__planoplan-test')[0].width = width;
 
-		var planoplanWidgetOptions = {
-		  tabs: (isSmall ? ["2d", "video", "tour"] : ["2d", "video", "tour", "qrcode"]),
-		  captions: {tab_2d: "2D план", tab_video: "3D план", tab_tour: "виртуальная прогулка", tab_qrcode: "квартира в смартфоне"},
-		  backgroundColor: "#ffffff",
-		  textColor: "#000000",
-		  tabsColor: "#ffffff",
-		  tabActiveColor: "#ffffff",
-		  activeTab: "2d",
-		  width: width,
-		  height: 446,
-		  lang: "ru",
-		  borderColor: "#ffffff",
-		  borderWidth: 1,
-		  fontFamily: "lato-black",
-		  fontSize: 12,
-		  uid: "d4c8332c6bf27210af3b3af228f7f417"
-		};
-	  
-		require(['widgetPlanoplan'], function(){
-			window.onload = function() {
+			var planoplanWidgetOptions = {
+			  tabs: (isSmall ? ["2d", "video", "tour"] : ["2d", "video", "tour", "qrcode"]),
+			  captions: {tab_2d: "2D план", tab_video: "3D план", tab_tour: "виртуальная прогулка", tab_qrcode: "квартира в смартфоне"},
+			  backgroundColor: "#ffffff",
+			  textColor: "#000000",
+			  tabsColor: "#ffffff",
+			  tabActiveColor: "#ffffff",
+			  activeTab: "2d",
+			  width: width,
+			  height: 446,
+			  lang: "ru",
+			  borderColor: "#ffffff",
+			  borderWidth: 1,
+			  fontFamily: "lato-black",
+			  fontSize: 12,
+			  uid: "d4c8332c6bf27210af3b3af228f7f417"
+			};
+		  
+			require(['widgetPlanoplan'], function(){
+				
 				var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 				var th = this;      
 				active_tab = th.getAttribute("data-tab");
@@ -1258,11 +1259,10 @@ define('app', [
 					  this.style.borderBottomColor = '#003877';
 					  this.style.borderBottomStyle = 'solid';
 					});
-				}
-			}
-		})
-
-	})(config);
+				}				
+			});
+		});
+	})($, config);
    
 
 	var $filterLeft = $('.b-filter__col-left').clone();

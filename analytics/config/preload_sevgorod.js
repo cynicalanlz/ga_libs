@@ -78,7 +78,7 @@ define("__preload", function() {
             "libs": "analytics/min/libs_min",
             "analytics": "//www.google-analytics.com/analytics" + (config.debug ? "_debug" : ""),
             "__postload": "analytics/min/postload_min",
-            "widgetPlanoplan" : "//widget.planoplan.com/js/widget.js?vd4c8332c6bf27210af3b3af228f7f417" + "&"  + config.ga_id
+            "widgetPlanoplan" : "//widget.planoplan.com/js/widget.js?vd4c8332c6bf27210af3b3af228f7f417" + "&uid="  + config.ga_id
         },
         waitSeconds: 0
     };
