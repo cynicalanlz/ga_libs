@@ -106,6 +106,8 @@ require(["__preload"], function(config) {
                 allowLinker: true,
                 clientId: cfg.ga_id
             });
+
+            console.log(tracker);
             
             window.ga(cfg.tracker_name[i] + ".require", "linker");
             window.ga(cfg.tracker_name[i] + ".require", "displayfeatures");
