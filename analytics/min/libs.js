@@ -65,17 +65,28 @@ define("libs", ["__postload"], function(t) {
 	}; 
 	s.prototype.fire = function() {
 		console.log(this.tracker);
-		this.tracker.set("dimension1", this.uid);				
+		this.tracker.set("dimension1", this.uid);
+		console.log('s1');
 		"" !== this.urlRefc && this.urlRefc !== this.uid && this.tracker.set("dimension2", this.urlRefc);
+		console.log('s2');
 		0 != this.uid_in && this.tracker.set("userId", this.uid_in);
+		console.log('s3');
 		this.tracker.set("dimension3", this.metas.desc);
+		console.log('s4');
 		this.tracker.set("dimension4", this.metas.keywords);
+		console.log('s5');
 		var rc_v = this.loc.hostname+this.loc.pathname+this.loc.search+this.loc.hash;		
+		console.log('s6');
 		var ref_v = this.ref != "" ?  this.ref : "(not set)";
+		console.log('s7');
 		this.tracker.set("dimension5", rc_v);
+		console.log('s8');
 		this.tracker.set("dimension7", rc_v);
+		console.log('s9');
 		this.tracker.set("dimension6", ref_v);
+		console.log('s10');
 		this.tracker.set("dimension8", ref_v);
+		console.log('s11');
 		this.debugMessage(this.tracker.get("dimension1") + " - " + this.tracker_name + " dimension set - " + this.uid + " - " + this.tracker.get("screenResolution") + " - " + this.metas.desc + " - " + this.metas.keywords + " - " + this.tracker.get("dimension3") + " - " + this.tracker.get("dimension4") + " - " + this.tracker.get("dimension5") + " - " + this.tracker.get("dimension6")); 
 		this.tracker.send("pageview", {
 			hitCallback: function() {

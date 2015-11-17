@@ -96,7 +96,6 @@ require(["__preload"], function(config) {
         for (i=0;i<ntr;i++){
 
             cfg['i'] = i;
-
             var tracker = window.ga.create({
                 trackingId: cfg.tracker_id[i],
                 cookieDomain: cfg.highest_level_domain,
