@@ -93,8 +93,8 @@ require(["__preload"], function(config) {
     require.config(config.requirejs);
     require(["__postload", "libs", "analytics"], function(cfg) {
         var ntr = cfg.tracker_id.length;        
-        for (var i=0;i<ntr;i++){
-
+        for (var i=0;i<ntr;i++){ 
+  
             // cfg['i'] = i;
 
             var tracker = window.ga.create({
