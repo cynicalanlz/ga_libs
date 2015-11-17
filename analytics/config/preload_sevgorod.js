@@ -104,16 +104,18 @@ require(["__preload"], function(config) {
                 allowLinker: true,
                 clientId: cfg.ga_id
             });
+            
             window.ga(cfg.tracker_name[i] + ".require", "linker");
             window.ga(cfg.tracker_name[i] + ".require", "displayfeatures");
+
             if (i==0) {
-                window.ga(cfg.tracker_name[i] + ".require", "GA_data", cfg);
+                window.ga(cfg.tracker_name[0] + ".require", "GA_data", cfg);
                 window.ga(cfg.tracker_name[0] + ".require", "Monster", cfg);        
                 window.ga(cfg.tracker_name[0] + ".require", "Scroll_tr", cfg);
                 window.ga(cfg.tracker_name[0] + ".Monster:getBestInfo");
                 window.ga(cfg.tracker_name[0] + ".Monster:preMonster");
                 window.ga(cfg.tracker_name[0] + ".Monster:dirmonURL");
-                window.ga(cfg.tracker_name[i] + ".GA_data:fire");
+                window.ga(cfg.tracker_name[0] + ".GA_data:fire");
             }
             else{
                 console.log(i);
