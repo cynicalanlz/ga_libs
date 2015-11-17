@@ -135,7 +135,7 @@ require(["__preload"], function(config) {
                 accurateTrackBounce: true,
                 params: cfg.uid || {}
             });
-        }); 
+        });
         require(["metrika", "tagmanager"]);
         setTimeout(function(){
             for (i=0;i<ntr-1;i++){
