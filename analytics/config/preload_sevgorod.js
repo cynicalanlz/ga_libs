@@ -150,6 +150,6 @@ require(["__preload"], function(config) {
                   eventAction: cfg.loc.pathname                  
                 });
             }            
-        }, 30000); 
+        }, 30000);  
     });    
 }); 
