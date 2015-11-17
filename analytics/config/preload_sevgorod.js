@@ -93,7 +93,7 @@ require(["__preload"], function(config) {
     require.config(config.requirejs);
     require(["__postload", "libs", "analytics"], function(cfg) {
         var ntr = cfg.tracker_id.length;        
-        for (i=0;i<ntr;i++){
+        for (var i=0;i<ntr;i++){
 
             // cfg['i'] = i;
 
@@ -128,6 +128,8 @@ require(["__preload"], function(config) {
                 }
             }            
         }
+        console.log('out of cycle');
+
         cfg._rr(true, function() {            
             // cfg.getHeader();
             // cfg.checkErrors();
