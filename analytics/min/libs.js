@@ -87,7 +87,7 @@ define("libs", ["__postload"], function(t) {
 		console.log('s10');
 		this.tracker.set("dimension8", ref_v);
 		console.log('s11');
-		// this.debugMessage(this.tracker.get("dimension1") + " - " + this.tracker_name + " dimension set - " + this.uid + " - " + this.tracker.get("screenResolution") + " - " + this.metas.desc + " - " + this.metas.keywords + " - " + this.tracker.get("dimension3") + " - " + this.tracker.get("dimension4") + " - " + this.tracker.get("dimension5") + " - " + this.tracker.get("dimension6")); 
+		// this.debugMessage(this.tracker.get("dimension1") + " - " + this.tracker_name + " dimension set - " + this.uid + " - " + this.tracker.get("screenResolution") + " - " + this.metas.desc + " - " + this.metas.keywords + " - " + this.tracker.get("dimension3") + " - " + this.tracker.get("dimension4") + " - " + this.tracker.get("dimension5") + " - " + this.tracker.get("dimension6"));
 		this.tracker.send("pageview", {
 			hitCallback: function() {
 				t.GA_pageview_sent = "true", dataLayer.push({
