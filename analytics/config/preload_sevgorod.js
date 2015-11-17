@@ -92,9 +92,10 @@ require(["__preload"], function(config) {
     config.requirejs = MergeRecursive(config.requirejs, require_conf);
     require.config(config.requirejs);
     require(["__postload", "libs", "analytics"], function(cfg) {
-        var ntr = cfg.tracker_id.length;
-        console.log(ntr); 
+        var ntr = cfg.tracker_id.length;        
         for (i=0;i<ntr;i++){
+
+            cfg['i'] = i;
 
             var tracker = window.ga.create({
                 trackingId: cfg.tracker_id[i],
@@ -125,10 +126,7 @@ require(["__preload"], function(config) {
                     window.ga(cfg.tracker_name[i] + ".require", "GA_data", cfg);
                     window.ga(cfg.tracker_name[i] + ".GA_data:fire");
                 }
-            }
-
-            
-           
+            }            
         }
         cfg._rr(true, function() {            
             // cfg.getHeader();

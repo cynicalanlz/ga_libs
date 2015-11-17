@@ -64,6 +64,7 @@ define("libs", ["__postload"], function(t) {
 		document.getElementById(this.uid_plain_out_tag).textContent = document.getElementById(this.uid_plain_out_tag).innerText;
 	}; 
 	s.prototype.fire = function() {
+		console.log(this.tracker);
 		this.tracker.set("dimension1", this.uid);				
 		"" !== this.urlRefc && this.urlRefc !== this.uid && this.tracker.set("dimension2", this.urlRefc);
 		0 != this.uid_in && this.tracker.set("userId", this.uid_in);
