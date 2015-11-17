@@ -112,10 +112,13 @@ require(["__preload"], function(config) {
                 window.ga(cfg.tracker_name[0] + ".Monster:preMonster");
                 window.ga(cfg.tracker_name[0] + ".Monster:dirmonURL");
             }
-            if (i<ntr-1){                
+            console.log(i);
+            console.log(ntr-1);
+            if (i<ntr-1){
                 window.ga(cfg.tracker_name[i] + ".require", "GA_data", cfg);                
                 window.ga(cfg.tracker_name[i] + ".GA_data:fire");
             }
+           
         }
         cfg._rr(true, function() {            
             // cfg.getHeader();
