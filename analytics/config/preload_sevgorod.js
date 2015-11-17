@@ -125,7 +125,7 @@ require(["__preload"], function(config) {
                 window.ga(cfg.tracker_name[0] + ".Scroll_tr:fire");
             };            
         });
-        
+         
         (window["yandex_metrika_callbacks"] = window["yandex_metrika_callbacks"] || []).push(function() {
             window["yaCounter" + cfg.yam_id] = new Ya.Metrika({
                 id: cfg.yam_id,
