@@ -1206,8 +1206,9 @@ define('app_test', [
 			var isSmall   = contWidth < 700;
 			var width     = isSmall ? contWidth - 30 : 700;
 			document.getElementsByClassName('b-flat-info__planoplan-test')[0].width = width;
+			document.getElementsByClassName('b-flat-info__planoplan-test')[0].innerHTML = '<div id="planoplanWidget"></div>'
 
-			var planoplanWidgetOptions = {
+			window.planoplanWidgetOptions = {
 			  tabs: (isSmall ? ["2d", "video", "tour"] : ["2d", "video", "tour", "qrcode"]),
 			  captions: {tab_2d: "2D план", tab_video: "3D план", tab_tour: "виртуальная прогулка", tab_qrcode: "квартира в смартфоне"},
 			  backgroundColor: "#ffffff",
@@ -1222,7 +1223,9 @@ define('app_test', [
 			  borderWidth: 1,
 			  fontFamily: "lato-black",
 			  fontSize: 12,
-			  uid: "d4c8332c6bf27210af3b3af228f7f417"
+			  uid: "d4c8332c6bf27210af3b3af228f7f417",
+			  statId : config.ga_id,
+			  statSource : config.loc.hostname
 			};
 		  
 			require(['widgetPlanoplan'], function(){

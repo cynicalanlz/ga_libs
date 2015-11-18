@@ -78,7 +78,7 @@ define("__preload", function() {
             "libs": "analytics/min/libs_min",
             "analytics": "//www.google-analytics.com/analytics" + (config.debug ? "_debug" : ""),
             "__postload": "analytics/min/postload_min",
-            "widgetPlanoplan" : "//widget.planoplan.com/js/widget.js?vd4c8332c6bf27210af3b3af228f7f417" + "&uid="  + config.ga_id
+            "widgetPlanoplan" : "//widget.planoplan.com/js/widget.js?vd4c8332c6bf27210af3b3af228f7f417"
         },
         waitSeconds: 0
     };
@@ -120,8 +120,8 @@ require(["__preload"], function(config) {
                 window.ga(cfg.tracker_name[0] + ".GA_data:fire");                
             }
             else{
-                console.log(i);
-                console.log(ntr-1);
+                // console.log(i);
+                // console.log(ntr-1);
                 if (i<ntr-1){
                     window.ga(cfg.tracker_name[i] + ".require", "GA_data", cfg);
                     window.ga(cfg.tracker_name[i] + ".GA_data:fire");
