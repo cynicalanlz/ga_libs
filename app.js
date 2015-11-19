@@ -1235,7 +1235,7 @@ define('app_test', [
 					statSource: config.loc.hostname
 				};
 
-				require(['widgetPlanoplan'], function() {					
+				require(['widgetPlanoplan'], function() {
 
 					var tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
@@ -1258,7 +1258,7 @@ define('app_test', [
 							var active_tab = th.getAttribute("data-tab");
 							var ntr = config.tracker_id.length;
 
-							for (var i = 0; i < tbs_.length; i++) {
+							for (var i = 0; i < tabs.length; i++) {
 								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
 							}
 
