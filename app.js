@@ -1199,7 +1199,7 @@ define('app_test', [
 
 	})();
 
-	(function($, config) {
+	(function($, config, window, document) {
 
 		$(function() {
 			if (document.getElementsByClassName('l-flat-header').length > 0) {
@@ -1237,59 +1237,54 @@ define('app_test', [
 
 				require(["widgetPlanoplan"],
 					function(data) {
-						config._rr(true, function(){
-							window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
-							console.log(window.tbs_);
-							console.log(window.tbs_['length']);
-							console.log(window.tbs_['length']);
-							console.log(window.tbs_.length);
-							console.log(Object.keys(window.tbs_));
-							console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length)
-							console.log(window.tbs_['length']);
+						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+						console.log(window.tbs_);						
+						console.log(window.tbs_.length);
+						console.log(window.tbs_['length']);
+						console.log(Object.keys(window.tbs_));
+						console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length)
+						
 
-							for (var i = 0; i < window.tbs_.length; i++) {
-							
-								if (window.tbs_[i].dataset.active === 'true') {
-									document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomWidth = '2px';
-									document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomColor = '#003877';
-									document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomStyle = 'solid';
-								}
-
-								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].addEventListener('click', function(event) {
-
-									console.log('tab clicked');
-									
-									var th = this;
-									var active_tab = th.getAttribute("data-tab");
-									var ntr = config.tracker_id.length;
-
-									for (var i = 0; i < window.tbs_.length; i++) {
-										document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
-									}
-
-									for (var i = 0; i < ntr - 1; i++) {
-										window.ga(config.tracker_name[i] + '.send', {
-											hitType: 'event',
-											eventCategory: 'Tabs Click',
-											eventAction: active_tab,
-											nonInteraction: true
-										});
-									}
-
-									this.style.borderBottomWidth = '2px';
-									this.style.borderBottomColor = '#003877';
-									this.style.borderBottomStyle = 'solid';
-								});
+						for (var i = 0; i < window.tbs_.length; i++) {
+						
+							if (window.tbs_[i].dataset.active === 'true') {
+								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomWidth = '2px';
+								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomColor = '#003877';
+								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomStyle = 'solid';
 							}
 
-						});
-						
+							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].addEventListener('click', function(event) {
+
+								console.log('tab clicked');
+								
+								var th = this;
+								var active_tab = th.getAttribute("data-tab");
+								var ntr = config.tracker_id.length;
+
+								for (var i = 0; i < window.tbs_.length; i++) {
+									document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
+								}
+
+								for (var i = 0; i < ntr - 1; i++) {
+									window.ga(config.tracker_name[i] + '.send', {
+										hitType: 'event',
+										eventCategory: 'Tabs Click',
+										eventAction: active_tab,
+										nonInteraction: true
+									});
+								}
+
+								this.style.borderBottomWidth = '2px';
+								this.style.borderBottomColor = '#003877';
+								this.style.borderBottomStyle = 'solid';
+							});
+						}										
 					}
 				);
 			}
 
 		});
-	})($, config);
+	})($, config, window, document);
 
 
 	var $filterLeft = $('.b-filter__col-left').clone();
