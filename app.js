@@ -1239,7 +1239,7 @@ define('app_test', [
 					function(data) {
 
 						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
-
+						console.log(window.tbs_);
 						console.log(window.tbs_['length']);
 						console.log(window.tbs_['length']);
 						console.log(window.tbs_.length);
