@@ -91,8 +91,6 @@ require(["__preload"], function(config) {
     var require_conf={};
     config.requirejs = MergeRecursive(config.requirejs, require_conf);
     require.config(config.requirejs);
-
-
     require(["__postload", "libs", "analytics"], function(cfg) {
         var ntr = cfg.tracker_id.length;        
         for (var i=0;i<ntr;i++){ 
@@ -126,8 +124,7 @@ require(["__preload"], function(config) {
                 }
             }            
         }
-        console.log('out of cycle');
-
+    
         cfg._rr(true, function() {
             window.ga(cfg.tracker_name[0] + ".Scroll_tr:init");        
             window.onscroll = function() {
