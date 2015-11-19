@@ -1238,8 +1238,10 @@ define('app_test', [
 				require(["widgetPlanoplan"],
 					function(data) {
 						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+						window.tbs_.len = document.getElementById('planoplanWidgetAreaTabs').childNodes.length;
 						console.log(document.readyState);
 						console.log(window.tbs_);
+						console.log(window.tbs_.prottype);
 						console.log(window.tbs_.length);
 						console.log(window.tbs_['length']);
 						console.log(Object.keys(window.tbs_));
