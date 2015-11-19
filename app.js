@@ -1237,7 +1237,7 @@ define('app_test', [
 
 				require(['widgetPlanoplan'], function() {
 
-					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+					window.tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
 					for (var i = 0; i < tabs.length; i++) {
 
@@ -1250,7 +1250,7 @@ define('app_test', [
 						tabs[i].addEventListener('click', function(event) {
 							
 							var th = this;
-							active_tab = th.getAttribute("data-tab");
+							var active_tab = th.getAttribute("data-tab");
 							var ntr = cfg.tracker_id.length;
 
 							for (var i = 0; i < tabs.length; i++) {
@@ -1258,7 +1258,7 @@ define('app_test', [
 							}
 
 							for (i = 0; i < ntr - 1; i++) {
-								window.ga(cfg.tracker_name[i] + '.send', {
+								window.ga(config.tracker_name[i] + '.send', {
 									hitType: 'event',
 									eventCategory: 'Tabs Click',
 									eventAction: active_tab,
