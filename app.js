@@ -1237,19 +1237,19 @@ define('app_test', [
 
 				require(['widgetPlanoplan'], function() {
 
-					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+					window.tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
 					console.log(tabs);
 
 					for (var i = 0; i < tabs.length; i++) {
 					
-						if (tabs[i].dataset.active === 'true') {
-							tabs[i].style.borderBottomWidth = '2px';
-							tabs[i].style.borderBottomColor = '#003877';
-							tabs[i].style.borderBottomStyle = 'solid';
+						if (window.tabs[i].dataset.active === 'true') {
+							window.tabs[i].style.borderBottomWidth = '2px';
+							window.tabs[i].style.borderBottomColor = '#003877';
+							window.tabs[i].style.borderBottomStyle = 'solid';
 						}
 
-						tabs[i].addEventListener('click', function(event) {
+						window.tabs[i].addEventListener('click', function(event) {
 
 							console.log('tab clicked');
 							
@@ -1258,10 +1258,10 @@ define('app_test', [
 							var ntr = cfg.tracker_id.length;
 
 							for (var i = 0; i < tabs.length; i++) {
-								tabs[i].style.borderBottom = 'none';
+								window.tabs[i].style.borderBottom = 'none';
 							}
 
-							for (i = 0; i < ntr - 1; i++) {
+							for (var i = 0; i < ntr - 1; i++) {
 								window.ga(config.tracker_name[i] + '.send', {
 									hitType: 'event',
 									eventCategory: 'Tabs Click',
