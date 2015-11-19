@@ -1235,16 +1235,16 @@ define('app_test', [
 					statSource: config.loc.hostname
 				};
 
-				require(['widgetPlanoplan'], function() {
+				require(['widgetPlanoplan'], function() {					
 
-					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+					var tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
-					console.log(tabs); console.log(tabs.length);
-					console.log(Object.keys(tabs).length);
+					console.log(tbs_); 
+					console.log(tbs_.length);
 
-					for (var i = 0; i < tabs.length; i++) {
+					for (var i = 0; i < tbs_.length; i++) {
 					
-						if (tabs[i].dataset.active === 'true') {
+						if (tbs_[i].dataset.active === 'true') {
 							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomWidth = '2px';
 							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomColor = '#003877';
 							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomStyle = 'solid';
@@ -1258,7 +1258,7 @@ define('app_test', [
 							var active_tab = th.getAttribute("data-tab");
 							var ntr = config.tracker_id.length;
 
-							for (var i = 0; i < tabs.length; i++) {
+							for (var i = 0; i < tbs_.length; i++) {
 								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
 							}
 
