@@ -1240,6 +1240,7 @@ define('app_test', [
 					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
 					console.log(tabs); console.log(tabs.length);
+					console.log(tabs..keys(obj).length);
 
 					for (var i = 0; i < tabs.length; i++) {
 					
