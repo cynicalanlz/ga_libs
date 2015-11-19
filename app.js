@@ -1237,7 +1237,8 @@ define('app_test', [
 
 				require(["widgetPlanoplan"],
 					function(data) {
-						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;						
+						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+						window.tbs_len = document.getElementById('planoplanWidgetAreaTabs').childNodes.length;
 						console.log(window.tbs_len);
 						console.log(document.readyState);
 						console.log(window.tbs_);
