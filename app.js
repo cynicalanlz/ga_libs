@@ -1241,9 +1241,9 @@ define('app_test', [
 						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
 						console.log(window.tbs_['length']);
-						console.log(tbs_['length']);
-						console.log(tbs_.length);
-						console.log(Object.keys(tbs_));
+						console.log(window.tbs_['length']);
+						console.log(window.tbs_.length);
+						console.log(Object.keys(window.tbs_));
 
 						console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length)
 						console.log(window.tbs_['length']);
