@@ -1238,17 +1238,19 @@ define('app_test', [
 				require(["widgetPlanoplan"],
 					function(data) {
 						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
-						window.tbs_len = document.getElementById('planoplanWidgetAreaTabs').childNodes.length;
+						window.tbs_len = window.tbs_.length;
+
 						console.log(window.tbs_len);
 						console.log(document.readyState);
-						console.log(window.tbs_);
-						console.log(window.tbs_.prottype);
+						console.log(window.tbs_);						
 						console.log(window.tbs_.length);
 						console.log(window.tbs_['length']);
 						console.log(Object.keys(window.tbs_));
 						console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length)
 
 						Array.prototype.forEach.call(window.tbs_, function(tab){
+							console.log(tab);
+
 							if (tab.dataset.active === 'true') {
 								tab.style.borderBottomWidth = '2px';
 								tab.style.borderBottomColor = '#003877';
@@ -1284,9 +1286,7 @@ define('app_test', [
 						});
 						
 							
-						// }	
-						
-
+						// }						
 						// for (var i = 0; i < window.tbs_.length; i++) { 
 						
 						// 	if (window.tbs_[i].dataset.active === 'true') {
@@ -1324,7 +1324,6 @@ define('app_test', [
 					}
 				);
 			}
-
 		});
 	})($, config);
 
