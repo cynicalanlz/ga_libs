@@ -1235,9 +1235,8 @@ define('app_test', [
 					statSource: config.loc.hostname
 				};
 
-				require(["//widget.planoplan.com/js/widget.js" + "?callback=define&e" + Math.floor((Math.random() * 10000) + 1) + "=" + new Date().getTime()],
+				require(["widgetPlanoplan"],
 					function(data) {
-
 						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 						console.log(window.tbs_);
 						console.log(window.tbs_['length']);
@@ -1281,6 +1280,7 @@ define('app_test', [
 								this.style.borderBottomColor = '#003877';
 								this.style.borderBottomStyle = 'solid';
 							});
+							return window;
 						}
 					}
 				);
