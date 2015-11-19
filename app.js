@@ -1235,94 +1235,101 @@ define('app_test', [
 					statSource: config.loc.hostname
 				};
 
-				require(["widgetPlanoplan"],
-					function(data) {
-						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
-						window.tbs_len = window.tbs_.length;
+				window.callBackFunction = function() {
+					window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+					window.tbs_len = window.tbs_.length;
 
-						console.log(window.tbs_len);
-						console.log(document.readyState);
-						console.log(window.tbs_);						
-						console.log(window.tbs_.length);
-						console.log(window.tbs_['length']);
-						console.log(Object.keys(window.tbs_));
-						console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length)
+					console.log(window.tbs_len);
+					console.log(document.readyState);
+					console.log(window.tbs_);						
+					console.log(window.tbs_.length);
+					console.log(window.tbs_['length']);
+					console.log(Object.keys(window.tbs_));
+					console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length)
 
-						Array.prototype.forEach.call(window.tbs_, function(tab){
-							console.log(tab);
+					Array.prototype.forEach.call(window.tbs_, function(tab){
+						console.log(tab);
 
-							if (tab.dataset.active === 'true') {
-								tab.style.borderBottomWidth = '2px';
-								tab.style.borderBottomColor = '#003877';
-								tab.style.borderBottomStyle = 'solid';
+						if (tab.dataset.active === 'true') {
+							tab.style.borderBottomWidth = '2px';
+							tab.style.borderBottomColor = '#003877';
+							tab.style.borderBottomStyle = 'solid';
+						}
+
+						tab.addEventListener('click', function(event) {
+
+							console.log('tab clicked');
+							
+							var th = this;
+							var active_tab = th.getAttribute("data-tab");
+							var ntr = config.tracker_id.length;
+
+							Array.prototype.forEach.call(window.tbs_, function(tab2){
+								tab2.style.borderBottom = 'none';
+							});
+							
+							for (var i = 0; i < ntr - 1; i++) {
+								window.ga(config.tracker_name[i] + '.send', {
+									hitType: 'event',
+									eventCategory: 'Tabs Click',
+									eventAction: active_tab,
+									nonInteraction: true
+								});
 							}
 
-							tab.addEventListener('click', function(event) {
-
-								console.log('tab clicked');
-								
-								var th = this;
-								var active_tab = th.getAttribute("data-tab");
-								var ntr = config.tracker_id.length;
-
-								Array.prototype.forEach.call(window.tbs_, function(tab2){
-									tab2.style.borderBottom = 'none';
-								});
-								
-								for (var i = 0; i < ntr - 1; i++) {
-									window.ga(config.tracker_name[i] + '.send', {
-										hitType: 'event',
-										eventCategory: 'Tabs Click',
-										eventAction: active_tab,
-										nonInteraction: true
-									});
-								}
-
-								// this.style.borderBottomWidth = '2px';
-								// this.style.borderBottomColor = '#003877';
-								// this.style.borderBottomStyle = 'solid';
-							});
-
+							// this.style.borderBottomWidth = '2px';
+							// this.style.borderBottomColor = '#003877';
+							// this.style.borderBottomStyle = 'solid';
 						});
+
+					});
+				}
+
+				require(["widgetPlanoplan"]);
+
+				// require(["widgetPlanoplan"],
+				// 	function(data) {
+
+				// 		console.log('widget loaded');
 						
 							
-						// }						
-						// for (var i = 0; i < window.tbs_.length; i++) { 
+				// 		// }						
+				// 		// for (var i = 0; i < window.tbs_.length; i++) { 
 						
-						// 	if (window.tbs_[i].dataset.active === 'true') {
-						// 		document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomWidth = '2px';
-						// 		document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomColor = '#003877';
-						// 		document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomStyle = 'solid';
-						// 	}
+				// 		// 	if (window.tbs_[i].dataset.active === 'true') {
+				// 		// 		document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomWidth = '2px';
+				// 		// 		document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomColor = '#003877';
+				// 		// 		document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomStyle = 'solid';
+				// 		// 	}
 
-						// 	document.getElementById('planoplanWidgetAreaTabs').childNodes[i].addEventListener('click', function(event) {
+				// 		// 	document.getElementById('planoplanWidgetAreaTabs').childNodes[i].addEventListener('click', function(event) {
 
-						// 		console.log('tab clicked');
+				// 		// 		console.log('tab clicked');
 								
-						// 		var th = this;
-						// 		var active_tab = th.getAttribute("data-tab");
-						// 		var ntr = config.tracker_id.length;
+				// 		// 		var th = this;
+				// 		// 		var active_tab = th.getAttribute("data-tab");
+				// 		// 		var ntr = config.tracker_id.length;
 
-						// 		for (var i = 0; i < window.tbs_.length; i++) {
-						// 			document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
-						// 		}
+				// 		// 		for (var i = 0; i < window.tbs_.length; i++) {
+				// 		// 			document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
+				// 		// 		}
 
-						// 		for (var i = 0; i < ntr - 1; i++) {
-						// 			window.ga(config.tracker_name[i] + '.send', {
-						// 				hitType: 'event',
-						// 				eventCategory: 'Tabs Click',
-						// 				eventAction: active_tab,
-						// 				nonInteraction: true
-						// 			});
-						// 		}
+				// 		// 		for (var i = 0; i < ntr - 1; i++) {
+				// 		// 			window.ga(config.tracker_name[i] + '.send', {
+				// 		// 				hitType: 'event',
+				// 		// 				eventCategory: 'Tabs Click',
+				// 		// 				eventAction: active_tab,
+				// 		// 				nonInteraction: true
+				// 		// 			});
+				// 		// 		}
 
-						// 		this.style.borderBottomWidth = '2px';
-						// 		this.style.borderBottomColor = '#003877';
-						// 		this.style.borderBottomStyle = 'solid';
-						// 	});
-						// }										
-					}
-				);
+				// 		// 		this.style.borderBottomWidth = '2px';
+				// 		// 		this.style.borderBottomColor = '#003877';
+				// 		// 		this.style.borderBottomStyle = 'solid';
+				// 		// 	});
+				// 		// }										
+				// 	}
+				// );
 			}
 		});
 	})($, config);
