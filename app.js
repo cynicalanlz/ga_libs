@@ -1280,10 +1280,10 @@ define('app_test', [
 								// this.style.borderBottomStyle = 'solid';
 							});
 
-						})
+						});
 						
 							
-						}	
+						// }	
 						
 
 						// for (var i = 0; i < window.tbs_.length; i++) { 
