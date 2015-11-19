@@ -1208,7 +1208,7 @@ define('app_test', [
 				var isSmall = contWidth < 700;
 				var width = isSmall ? contWidth - 30 : 700;
 				document.getElementsByClassName('b-flat-info__planoplan-test')[0].width = width;
-				document.getElementsByClassName('b-flat-info__planoplan-test')[0].innerHTML = '<div id="planoplanWidget"></div>'
+				document.getElementsByClassName('b-flat-info__planoplan-test')[0].innerHTML = '<div id="planoplanWidget"></div>';
 
 				window.planoplanWidgetOptions = {
 					tabs: (isSmall ? ["2d", "video", "tour"] : ["2d", "video", "tour", "qrcode"]),
@@ -1235,48 +1235,51 @@ define('app_test', [
 					statSource: config.loc.hostname
 				};
 
-				require(["//widget.planoplan.com/js/widget.js" + "?callback=define&e" + Math.floor((Math.random() * 10000) + 1) + "=" + new Date().getTime()], function(data) {
+				require(["//widget.planoplan.com/js/widget.js" + "?callback=define&e" + Math.floor((Math.random() * 10000) + 1) + "=" + new Date().getTime()],
+					function(data) {
 
-					var tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+						var tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
-					console.log(tbs_); 
-					console.log(tbs_.length);
+						console.log(tbs_);
+						console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length)
+						console.log(tbs_.length);						
 
-					for (var i = 0; i < tbs_.length; i++) {
-					
-						if (tbs_[i].dataset.active === 'true') {
-							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomWidth = '2px';
-							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomColor = '#003877';
-							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomStyle = 'solid';
+						for (var i = 0; i < tbs_.length; i++) {
+						
+							if (tbs_[i].dataset.active === 'true') {
+								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomWidth = '2px';
+								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomColor = '#003877';
+								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomStyle = 'solid';
+							}
+
+							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].addEventListener('click', function(event) {
+
+								console.log('tab clicked');
+								
+								var th = this;
+								var active_tab = th.getAttribute("data-tab");
+								var ntr = config.tracker_id.length;
+
+								for (var i = 0; i < tabs.length; i++) {
+									document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
+								}
+
+								for (var i = 0; i < ntr - 1; i++) {
+									window.ga(config.tracker_name[i] + '.send', {
+										hitType: 'event',
+										eventCategory: 'Tabs Click',
+										eventAction: active_tab,
+										nonInteraction: true
+									});
+								}
+
+								this.style.borderBottomWidth = '2px';
+								this.style.borderBottomColor = '#003877';
+								this.style.borderBottomStyle = 'solid';
+							});
 						}
-
-						document.getElementById('planoplanWidgetAreaTabs').childNodes[i].addEventListener('click', function(event) {
-
-							console.log('tab clicked');
-							
-							var th = this;
-							var active_tab = th.getAttribute("data-tab");
-							var ntr = config.tracker_id.length;
-
-							for (var i = 0; i < tabs.length; i++) {
-								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
-							}
-
-							for (var i = 0; i < ntr - 1; i++) {
-								window.ga(config.tracker_name[i] + '.send', {
-									hitType: 'event',
-									eventCategory: 'Tabs Click',
-									eventAction: active_tab,
-									nonInteraction: true
-								});
-							}
-
-							this.style.borderBottomWidth = '2px';
-							this.style.borderBottomColor = '#003877';
-							this.style.borderBottomStyle = 'solid';
-						});
 					}
-				});
+				);
 			}
 
 		});
