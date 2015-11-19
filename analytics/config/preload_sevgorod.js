@@ -4,7 +4,7 @@ define("__preload", function() {
         ck: document.cookie,
         loc: window.location,
         ref: document.referrer,
-        debug: true,
+        debug: false,
         tagmanager_id: "GTM-TSQTRX",
         tracker_id: ["UA-37849584-1","UA-38092225-1","UA-38092225-1"],
         yam_id: "19547275",
