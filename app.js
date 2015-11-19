@@ -1333,4 +1333,4 @@ define('app_test', [
 
 	return {};
 });
-/* jshint ignore:end 
+/* jshint ignore:end  */
