@@ -1237,19 +1237,19 @@ define('app_test', [
 
 				require(['widgetPlanoplan'], function() {
 
-					window.tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+
+					console.log(tabs);
 
 					for (var i = 0; i < tabs.length; i++) {
-
-						console.log(i);
-
-						if (window.tabs[i].dataset.active === 'true') {
-							window.tabs[i].style.borderBottomWidth = '2px';
-							window.tabs[i].style.borderBottomColor = '#003877';
-							window.tabs[i].style.borderBottomStyle = 'solid';
+					
+						if (tabs[i].dataset.active === 'true') {
+							tabs[i].style.borderBottomWidth = '2px';
+							tabs[i].style.borderBottomColor = '#003877';
+							tabs[i].style.borderBottomStyle = 'solid';
 						}
 
-						window.tabs[i].addEventListener('click', function(event) {
+						tabs[i].addEventListener('click', function(event) {
 
 							console.log('tab clicked');
 							
