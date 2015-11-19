@@ -1235,7 +1235,7 @@ define('app_test', [
 					statSource: config.loc.hostname
 				};
 
-				require(['widgetPlanoplan'], function() {
+				require(['widgetPlanoplan'], function(data) {
 
 					var tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
