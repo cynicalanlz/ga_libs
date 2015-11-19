@@ -1237,7 +1237,7 @@ define('app_test', [
 
 				require(['widgetPlanoplan'], function() {
 
-					window.tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
 					for (var i = 0; i < tabs.length; i++) {
 
@@ -1248,6 +1248,8 @@ define('app_test', [
 						}
 
 						tabs[i].addEventListener('click', function(event) {
+
+							console.log('tab clicked');
 							
 							var th = this;
 							var active_tab = th.getAttribute("data-tab");
