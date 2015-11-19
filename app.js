@@ -1237,13 +1237,13 @@ define('app_test', [
 
 				require(['widgetPlanoplan'], function() {
 
-					window.tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
+					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
-					console.log(window.tabs); console.log(window.tabs.length);
+					console.log(tabs); console.log(tabs.length);
 
-					for (var i = 0; i < window.tabs.length; i++) {
+					for (var i = 0; i < tabs.length; i++) {
 					
-						if (window.tabs[i].dataset.active === 'true') {
+						if (tabs[i].dataset.active === 'true') {
 							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomWidth = '2px';
 							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomColor = '#003877';
 							document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottomStyle = 'solid';
@@ -1257,7 +1257,7 @@ define('app_test', [
 							var active_tab = th.getAttribute("data-tab");
 							var ntr = config.tracker_id.length;
 
-							for (var i = 0; i < window.tabs.length; i++) {
+							for (var i = 0; i < tabs.length; i++) {
 								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
 							}
 
