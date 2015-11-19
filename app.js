@@ -1239,7 +1239,7 @@ define('app_test', [
 
 					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
-					console.log(tabs);
+					console.log(tabs); console.log(tabs.length);
 
 					for (var i = 0; i < tabs.length; i++) {
 					
@@ -1255,7 +1255,7 @@ define('app_test', [
 							
 							var th = this;
 							var active_tab = th.getAttribute("data-tab");
-							var ntr = cfg.tracker_id.length;
+							var ntr = config.tracker_id.length;
 
 							for (var i = 0; i < tabs.length; i++) {
 								document.getElementById('planoplanWidgetAreaTabs').childNodes[i].style.borderBottom = 'none';
