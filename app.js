@@ -1202,71 +1202,81 @@ define('app_test', [
 	(function($, config) {
 
 		$(function() {
-			var contWidth = document.getElementsByClassName('l-flat-header')[0].offsetWidth;
-			var isSmall   = contWidth < 700;
-			var width     = isSmall ? contWidth - 30 : 700;
-			document.getElementsByClassName('b-flat-info__planoplan-test')[0].width = width;
-			document.getElementsByClassName('b-flat-info__planoplan-test')[0].innerHTML = '<div id="planoplanWidget"></div>'
+			if (document.getElementsByClassName('l-flat-header').length > 0) {
 
-			window.planoplanWidgetOptions = {
-			  tabs: (isSmall ? ["2d", "video", "tour"] : ["2d", "video", "tour", "qrcode"]),
-			  captions: {tab_2d: "2D план", tab_video: "3D план", tab_tour: "виртуальная прогулка", tab_qrcode: "квартира в смартфоне"},
-			  backgroundColor: "#ffffff",
-			  textColor: "#000000",
-			  tabsColor: "#ffffff",
-			  tabActiveColor: "#ffffff",
-			  activeTab: "2d",
-			  width: width,
-			  height: 446,
-			  lang: "ru",
-			  borderColor: "#ffffff",
-			  borderWidth: 1,
-			  fontFamily: "lato-black",
-			  fontSize: 12,
-			  uid: "d4c8332c6bf27210af3b3af228f7f417",
-			  statId : config.ga_id,
-			  statSource : config.loc.hostname
-			};
-		  
-			require(['widgetPlanoplan'], function(){
-				
-				var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
-				var th = this;      
-				active_tab = th.getAttribute("data-tab");
+				var contWidth = document.getElementsByClassName('l-flat-header')[0].offsetWidth;
+				var isSmall = contWidth < 700;
+				var width = isSmall ? contWidth - 30 : 700;
+				document.getElementsByClassName('b-flat-info__planoplan-test')[0].width = width;
+				document.getElementsByClassName('b-flat-info__planoplan-test')[0].innerHTML = '<div id="planoplanWidget"></div>'
 
-				var ntr = cfg.tracker_id.length;
-						  
-				for (var i = 0; i < tabs.length; i++) {
-					if (tabs[i].dataset.active === 'true') {
-					  tabs[i].style.borderBottomWidth = '2px';
-					  tabs[i].style.borderBottomColor = '#003877';
-					  tabs[i].style.borderBottomStyle = 'solid';
-					}
+				window.planoplanWidgetOptions = {
+					tabs: (isSmall ? ["2d", "video", "tour"] : ["2d", "video", "tour", "qrcode"]),
+					captions: {
+						tab_2d: "2D план",
+						tab_video: "3D план",
+						tab_tour: "виртуальная прогулка",
+						tab_qrcode: "квартира в смартфоне"
+					},
+					backgroundColor: "#ffffff",
+					textColor: "#000000",
+					tabsColor: "#ffffff",
+					tabActiveColor: "#ffffff",
+					activeTab: "2d",
+					width: width,
+					height: 446,
+					lang: "ru",
+					borderColor: "#ffffff",
+					borderWidth: 1,
+					fontFamily: "lato-black",
+					fontSize: 12,
+					uid: "d4c8332c6bf27210af3b3af228f7f417",
+					statId: config.ga_id,
+					statSource: config.loc.hostname
+				};
 
-					tabs[i].addEventListener('click', function(event) {
+				require(['widgetPlanoplan'], function() {
+
+					var tabs = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 
 					for (var i = 0; i < tabs.length; i++) {
-						tabs[i].style.borderBottom = 'none';
-					}
 
-					for (i=0;i<ntr-1;i++){
-						window.ga(cfg.tracker_name[i] + '.send', {
-							hitType: 'event',
-							eventCategory: 'Tabs Click',
-							eventAction: active_tab,
-							nonInteraction : true
+						if (tabs[i].dataset.active === 'true') {
+							tabs[i].style.borderBottomWidth = '2px';
+							tabs[i].style.borderBottomColor = '#003877';
+							tabs[i].style.borderBottomStyle = 'solid';
+						}
+
+						tabs[i].addEventListener('click', function(event) {
+							
+							var th = this;
+							active_tab = th.getAttribute("data-tab");
+							var ntr = cfg.tracker_id.length;
+
+							for (var i = 0; i < tabs.length; i++) {
+								tabs[i].style.borderBottom = 'none';
+							}
+
+							for (i = 0; i < ntr - 1; i++) {
+								window.ga(cfg.tracker_name[i] + '.send', {
+									hitType: 'event',
+									eventCategory: 'Tabs Click',
+									eventAction: active_tab,
+									nonInteraction: true
+								});
+							}
+
+							this.style.borderBottomWidth = '2px';
+							this.style.borderBottomColor = '#003877';
+							this.style.borderBottomStyle = 'solid';
 						});
 					}
+				});
+			}
 
-					  this.style.borderBottomWidth = '2px';
-					  this.style.borderBottomColor = '#003877';
-					  this.style.borderBottomStyle = 'solid';
-					});
-				}				
-			});
 		});
 	})($, config);
-   
+
 
 	var $filterLeft = $('.b-filter__col-left').clone();
 	var $filterRight = $('.b-filter__col-right').clone();

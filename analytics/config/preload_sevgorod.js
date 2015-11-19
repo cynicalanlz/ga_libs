@@ -78,7 +78,7 @@ define("__preload", function() {
             "libs": "analytics/min/libs_min",
             "analytics": "//www.google-analytics.com/analytics" + (config.debug ? "_debug" : ""),
             "__postload": "analytics/min/postload_min",
-            "widgetPlanoplan" : "//widget.planoplan.com/js/widget.js?vd4c8332c6bf27210af3b3af228f7f417"
+            "widgetPlanoplan" : "//widget.planoplan.com/js/widget.js" + "?" + Math.floor((Math.random() * 10000) + 1) + "." + new Date().getTime()
         },
         waitSeconds: 0
     };
@@ -91,12 +91,12 @@ require(["__preload"], function(config) {
     var require_conf={};
     config.requirejs = MergeRecursive(config.requirejs, require_conf);
     require.config(config.requirejs);
+
+
     require(["__postload", "libs", "analytics"], function(cfg) {
         var ntr = cfg.tracker_id.length;        
         for (var i=0;i<ntr;i++){ 
   
-            // cfg['i'] = i;
-
             var tracker = window.ga.create({
                 trackingId: cfg.tracker_id[i],
                 cookieDomain: cfg.highest_level_domain,
@@ -120,8 +120,6 @@ require(["__preload"], function(config) {
                 window.ga(cfg.tracker_name[0] + ".GA_data:fire");                
             }
             else{
-                // console.log(i);
-                // console.log(ntr-1);
                 if (i<ntr-1){
                     window.ga(cfg.tracker_name[i] + ".require", "GA_data", cfg);
                     window.ga(cfg.tracker_name[i] + ".GA_data:fire");
@@ -130,9 +128,7 @@ require(["__preload"], function(config) {
         }
         console.log('out of cycle');
 
-        cfg._rr(true, function() {            
-            // cfg.getHeader();
-            // cfg.checkErrors();
+        cfg._rr(true, function() {
             window.ga(cfg.tracker_name[0] + ".Scroll_tr:init");        
             window.onscroll = function() {
                 window.ga(cfg.tracker_name[0] + ".Scroll_tr:fire");

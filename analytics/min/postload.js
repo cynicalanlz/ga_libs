@@ -1,36 +1,4 @@
 define('__postload', ['__preload'], function(config) {
-    // config.metas = {
-    //         all: document.getElementsByTagName("meta"),
-    //         count: {
-    //             all: 0,
-    //             desc: 0,
-    //             keywords: 0
-    //         },
-    //         header: {}
-    // };
-    // if (typeof config.metas != "undefined") {
-    //     if (config.metas.all.length > 0) {
-    //         config.metas.count = {
-    //             all: config.metas.all.length,
-    //             desc: 0,
-    //             keywords: 0
-    //         };
-    //         for (var q = config.metas.count.all; q--;) {
-    //             if (config.metas.all[q].name != null) {
-    //                 switch (config.metas.all[q].name.toLowerCase()) {
-    //                     case "description":
-    //                         config.metas.desc = config.metas.all[q].content != "" ? config.metas.all[q].content : "(not set)";
-    //                         config.metas.count.desc++
-    //                         break;
-    //                     case "keywords":
-    //                         config.metas.keywords = config.metas.all[q].content != "" ? config.metas.all[q].content : "(not set)";
-    //                         config.metas.count.keywords++
-    //                         break;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
     config.readyList = [];
     config.readyFired = false;
     config.readyEventHandlersInstalled = false;
@@ -83,30 +51,5 @@ define('__postload', ['__preload'], function(config) {
         document.getElementById(a).innerHTML = phone;
         document.getElementById(a).textContent = phone;
     };
-
-    // config.getHeader = function() {
-    //     config.metas.header.all = document.getElementsByTagName("h1");
-    //     0 < config.metas.header.all.length && (config.metas.header.text = "" != config.metas.header.all[0].innerHTML ? config.metas.header.all[0].innerHTML : "(not set)", config.metas.count.header = config.metas.header.all.length);
-    // };
-    // config.checkErrors = function() {
-    //     if (config.metas.count.desc == 0 || config.metas.count.desc > 1 || config.metas.desc == "(not set)") {
-    //         config.errMsg = config.loc.href + " has " + config.metas.count.desc + " description tags and first tag is " + ((config.metas.desc == "(not set)") ? "not set" : "set");
-    //         window.ga(config.tracker_name + ".send", "exception", {
-    //             "exFatal": false,
-    //             "exDescription": config.errMsg,
-    //             "useBeacon": true,
-    //             "nonInteraction":true
-    //         });
-    //     }
-    //     if (config.metas.count.header == 0 || config.metas.count.header > 1 || config.metas.header.text == "(not set)") {
-    //         config.errMsg = config.loc.href + " has " + config.metas.count.header + " h1 tags and first tag is " + ((config.metas.header.text == "(not set)") ? "not set" : "set");
-    //         window.ga(config.tracker_name + ".send", "exception", {
-    //             "exFatal": false,
-    //             "exDescription": config.errMsg,
-    //             "useBeacon": true,
-    //             "nonInteraction":true
-    //         });
-    //     }
-    // };    
     return config;
 });
