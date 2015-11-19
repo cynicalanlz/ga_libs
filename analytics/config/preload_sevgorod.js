@@ -79,7 +79,7 @@ define("__preload", function() {
             "analytics": "//www.google-analytics.com/analytics" + (config.debug ? "_debug" : ""),
             "__postload": "analytics/min/postload_min",
             "widgetPlanoplan" : "//widget.planoplan.com/js/widget.js" + "?callback=define&e" + Math.floor((Math.random() * 10000) + 1) + "=" + new Date().getTime()
-        }
+        },
         waitSeconds: 0
     };
     window.__s = '316fdfbd11b231a84fecfac95a524e95';
