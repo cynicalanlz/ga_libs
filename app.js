@@ -1237,7 +1237,10 @@ define('app_test', [
 
 				require(["widgetPlanoplan"],
 					function(data) {
-						window.onload = function(){
+						console.log('widget loaded');
+					}
+				);
+				window.onload = function(){
 							window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 							console.log(window.tbs_);						
 							console.log(window.tbs_.length);
@@ -1282,9 +1285,7 @@ define('app_test', [
 
 							}
 						
-						}										
-					}
-				);
+						}
 			}
 
 		});
