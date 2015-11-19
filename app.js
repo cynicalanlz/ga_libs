@@ -1,4 +1,4 @@
- jshint ignore:start */
+/* jshint ignore:start */
 //jscs:disable
 define('app_test', [
 	'jquery',
