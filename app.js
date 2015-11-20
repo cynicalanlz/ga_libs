@@ -1241,11 +1241,11 @@ define('app_test', [
 
 					console.log(window.tbs_len);
 					console.log(document.readyState);
-					console.log(window.tbs_);						
+					console.log(window.tbs_);			
 					console.log(window.tbs_.length);
 					console.log(window.tbs_['length']);
 					console.log(Object.keys(window.tbs_));
-					console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length)
+					console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length);
 
 					Array.prototype.forEach.call(window.tbs_, function(tab){
 						console.log(tab);
@@ -1268,7 +1268,7 @@ define('app_test', [
 								tab2.style.borderBottom = 'none';
 							});
 							
-							for (var i = 0; i < ntr - 1; i++) {
+							for (var i = 0; i < ntr; i++) {
 								window.ga(config.tracker_name[i] + '.send', {
 									hitType: 'event',
 									eventCategory: 'Tabs Click',
@@ -1286,7 +1286,7 @@ define('app_test', [
 				}
 
 				window.enableCallBackFunction = true;
-				
+
 				require(["widgetPlanoplan"]);
 
 
