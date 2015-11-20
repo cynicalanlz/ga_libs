@@ -1285,7 +1285,11 @@ define('app_test', [
 					});
 				}
 
+				window.enableCallBackFunction = true;
+				
 				require(["widgetPlanoplan"]);
+
+
 
 				// require(["widgetPlanoplan"],
 				// 	function(data) {
