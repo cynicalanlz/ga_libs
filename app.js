@@ -1277,9 +1277,9 @@ define('app_test', [
 								});
 							}
 
-							// this.style.borderBottomWidth = '2px';
-							// this.style.borderBottomColor = '#003877';
-							// this.style.borderBottomStyle = 'solid';
+							this.style.borderBottomWidth = '2px';
+							this.style.borderBottomColor = '#003877';
+							this.style.borderBottomStyle = 'solid';
 						});
 
 					});
