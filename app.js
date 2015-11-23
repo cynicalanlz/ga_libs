@@ -1329,7 +1329,7 @@ define('app_test', [
 							tab.style.borderBottomWidth = '2px';
 							tab.style.borderBottomColor = '#003877';
 							tab.style.borderBottomStyle = 'solid';
-						}
+						}						
 						tab.addEventListener('click', function(event) {
 							var th = this;
 							var active_tab = th.getAttribute("data-tab");
