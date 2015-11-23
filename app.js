@@ -1392,7 +1392,7 @@ define('app_test', [
 				}
 
 				if (window.addEventListener) {
-					window.addEventListener("message", window.eventListenerFunction);
+					window.addEventListener("message", window.eventListenerFunction, false);
 				} 
 				else {
 					window.attachEvent("onmessage", window.eventListenerFunction);
