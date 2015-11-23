@@ -1329,28 +1329,54 @@ define('app_test', [
 							tab.style.borderBottomWidth = '2px';
 							tab.style.borderBottomColor = '#003877';
 							tab.style.borderBottomStyle = 'solid';
-						}						
-						tab.addEventListener('click', function(event) {
-							var th = this;
-							var active_tab = th.getAttribute("data-tab");
-							var ntr = config.tracker_id.length;
+						}
+						if (tab.addEventListener){
+							tab.addEventListener('click', function(event) {
+								var th = this;
+								var active_tab = th.getAttribute("data-tab");
+								var ntr = config.tracker_id.length;
 
-							Array.prototype.forEach.call(window.tbs_, function(tab2){
-								tab2.style.borderBottom = 'none';
-							});
-							
-							for (var i = 0; i < ntr; i++) {
-								window.ga(config.tracker_name[i] + '.send', {
-									hitType: 'event',
-									eventCategory: 'Tabs Click',
-									eventAction: active_tab,
-									nonInteraction: true
+								Array.prototype.forEach.call(window.tbs_, function(tab2){
+									tab2.style.borderBottom = 'none';
 								});
-							}
-							this.style.borderBottomWidth = '2px';
-							this.style.borderBottomColor = '#003877';
-							this.style.borderBottomStyle = 'solid';
-						});
+								
+								for (var i = 0; i < ntr; i++) {
+									window.ga(config.tracker_name[i] + '.send', {
+										hitType: 'event',
+										eventCategory: 'Tabs Click',
+										eventAction: active_tab,
+										nonInteraction: true
+									});
+								}
+								this.style.borderBottomWidth = '2px';
+								this.style.borderBottomColor = '#003877';
+								this.style.borderBottomStyle = 'solid';
+							}, false);
+						}
+						else if (tab.attachEvent){
+							tab.attachEvent('onclick', function(event) {
+								var th = this;
+								var active_tab = th.getAttribute("data-tab");
+								var ntr = config.tracker_id.length;
+
+								Array.prototype.forEach.call(window.tbs_, function(tab2){
+									tab2.style.borderBottom = 'none';
+								});
+								
+								for (var i = 0; i < ntr; i++) {
+									window.ga(config.tracker_name[i] + '.send', {
+										hitType: 'event',
+										eventCategory: 'Tabs Click',
+										eventAction: active_tab,
+										nonInteraction: true
+									});
+								}
+								this.style.borderBottomWidth = '2px';
+								this.style.borderBottomColor = '#003877';
+								this.style.borderBottomStyle = 'solid';
+							});
+						}
+						
 					});		
 				}
 
@@ -1362,7 +1388,7 @@ define('app_test', [
 					if (event.data == 'planoplanReady') {
 						var getType = {};
 						if(window.callBackFunction && getType.toString.call(window.callBackFunction) === '[object Function]'){
-							window.callBackFunction()
+							window.callBackFunction();
 						};			
 					}					
 				}
