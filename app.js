@@ -1380,9 +1380,9 @@ define('app_test', [
 
 				window.eventListenerFunction = function(event) {					
 					console.log(event);					
-					// if (event.origin != 'http://widget.planoplan.com' && event.origin != 'https://widget.planoplan.com') {
-					// 	return;
-					// }
+					if (event.origin != 'http://widget.planoplan.com' && event.origin != 'https://widget.planoplan.com') {
+						return;
+					}
 					if (event.data == 'planoplanReady') {
 						var getType = {};
 						if(window.callBackFunction && getType.toString.call(window.callBackFunction) === '[object Function]'){
