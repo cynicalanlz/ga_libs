@@ -1315,8 +1315,7 @@ define('app_test', [
 
 				window.callBackFunction = function(){
 
-					window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;										
-					console.log(window.tbs_len);
+					window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 					console.log(document.readyState);
 					console.log(window.tbs_);			
 					console.log(window.tbs_.length);
@@ -1382,7 +1381,7 @@ define('app_test', [
 
 				window.eventListenerFunction = function(event) {					
 					console.log(event);					
-					if (event.origin != 'http://widget.planoplan.com') {
+					if (event.origin != 'http://widget.planoplan.com' && event.origin != 'https://widget.planoplan.com') {
 						return;
 					}
 					if (event.data == 'planoplanReady') {
