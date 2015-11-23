@@ -1313,6 +1313,47 @@ define('app_test', [
 									hitType: 'pageview'
 								});
 
+				window.callBackFunction = function(){
+
+					window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;										
+					console.log(window.tbs_len);
+					console.log(document.readyState);
+					console.log(window.tbs_);			
+					console.log(window.tbs_.length);
+					console.log(window.tbs_['length']);
+					console.log(Object.keys(window.tbs_));
+					console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length);
+
+					Array.prototype.forEach.call(window.tbs_, function(tab){
+						if (tab.dataset.active === 'true') {
+							tab.style.borderBottomWidth = '2px';
+							tab.style.borderBottomColor = '#003877';
+							tab.style.borderBottomStyle = 'solid';
+						}
+						tab.addEventListener('click', function(event) {
+							var th = this;
+							var active_tab = th.getAttribute("data-tab");
+							var ntr = config.tracker_id.length;
+
+							Array.prototype.forEach.call(window.tbs_, function(tab2){
+								tab2.style.borderBottom = 'none';
+							});
+							
+							for (var i = 0; i < ntr; i++) {
+								window.ga(config.tracker_name[i] + '.send', {
+									hitType: 'event',
+									eventCategory: 'Tabs Click',
+									eventAction: active_tab,
+									nonInteraction: true
+								});
+							}
+							this.style.borderBottomWidth = '2px';
+							this.style.borderBottomColor = '#003877';
+							this.style.borderBottomStyle = 'solid';
+						});
+					});		
+				}
+
 				window.callBackFunction = function(event) {
 					
 					console.log(event);
@@ -1322,49 +1363,9 @@ define('app_test', [
 					}
 
 					if (event.data == 'planoplanReady') {
-
-						window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;										
-						console.log(window.tbs_len);
-						console.log(document.readyState);
-						console.log(window.tbs_);			
-						console.log(window.tbs_.length);
-						console.log(window.tbs_['length']);
-						console.log(Object.keys(window.tbs_));
-						console.log(window.document.getElementById('planoplanWidgetAreaTabs').childNodes.length);
-
-						Array.prototype.forEach.call(window.tbs_, function(tab){
-							if (tab.dataset.active === 'true') {
-								tab.style.borderBottomWidth = '2px';
-								tab.style.borderBottomColor = '#003877';
-								tab.style.borderBottomStyle = 'solid';
-							}
-							tab.addEventListener('click', function(event) {
-								var th = this;
-								var active_tab = th.getAttribute("data-tab");
-								var ntr = config.tracker_id.length;
-
-								Array.prototype.forEach.call(window.tbs_, function(tab2){
-									tab2.style.borderBottom = 'none';
-								});
-								
-								for (var i = 0; i < ntr; i++) {
-									window.ga(config.tracker_name[i] + '.send', {
-										hitType: 'event',
-										eventCategory: 'Tabs Click',
-										eventAction: active_tab,
-										nonInteraction: true
-									});
-								}
-
-								this.style.borderBottomWidth = '2px';
-								this.style.borderBottomColor = '#003877';
-								this.style.borderBottomStyle = 'solid';
-							});
-						});		
-					}
-					if (/^click.*/.match(event.data)){
-
-					}								
+						var getType = {};
+						if(window.callBackFunction && getType.toString.call(window.callBackFunction) === '[object Function]'){window.callBackFunction()};			
+					}					
 				}
 
 				if (window.addEventListener) {
