@@ -1,4 +1,4 @@
- jshint ignore:start */
+ /* jshint ignore:start */
 //jscs:disable
 define('app_test', [
 	'jquery',
@@ -1409,4 +1409,4 @@ define('app_test', [
 
 	return {};
 });
-/* jshint ignore:end 
+/* jshint ignore:end */
