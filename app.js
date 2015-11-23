@@ -1354,25 +1354,24 @@ define('app_test', [
 					});		
 				}
 
-				window.callBackFunction = function(event) {
-					
-					console.log(event);
-					
+				window.eventListenerFunction = function(event) {					
+					console.log(event);					
 					if (event.origin != 'http://widget.planoplan.com') {
 						return;
 					}
-
 					if (event.data == 'planoplanReady') {
 						var getType = {};
-						if(window.callBackFunction && getType.toString.call(window.callBackFunction) === '[object Function]'){window.callBackFunction()};			
+						if(window.callBackFunction && getType.toString.call(window.callBackFunction) === '[object Function]'){
+							window.callBackFunction()
+						};			
 					}					
 				}
 
 				if (window.addEventListener) {
-					window.addEventListener("message", window.callBackFunction);
+					window.addEventListener("message", window.eventListenerFunction);
 				} 
 				else {
-					window.attachEvent("onmessage", window.callBackFunction);
+					window.attachEvent("onmessage", window.eventListenerFunction);
 				}
 
 				require(["widgetPlanoplan"]);
