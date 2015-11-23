@@ -1,4 +1,4 @@
-/* jshint ignore:start */
+ jshint ignore:start */
 //jscs:disable
 define('app_test', [
 	'jquery',
@@ -1374,16 +1374,15 @@ define('app_test', [
 								this.style.borderBottomColor = '#003877';
 								this.style.borderBottomStyle = 'solid';
 							});
-						}
-						
+						}						
 					});		
 				}
 
 				window.eventListenerFunction = function(event) {					
 					console.log(event);					
-					if (event.origin != 'http://widget.planoplan.com' && event.origin != 'https://widget.planoplan.com') {
-						return;
-					}
+					// if (event.origin != 'http://widget.planoplan.com' && event.origin != 'https://widget.planoplan.com') {
+					// 	return;
+					// }
 					if (event.data == 'planoplanReady') {
 						var getType = {};
 						if(window.callBackFunction && getType.toString.call(window.callBackFunction) === '[object Function]'){
@@ -1410,4 +1409,4 @@ define('app_test', [
 
 	return {};
 });
-/* jshint ignore:end */
+/* jshint ignore:end 
