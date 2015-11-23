@@ -1235,6 +1235,10 @@ define('app_test', [
 					statSource: config.loc.hostname
 				};
 
+				/(trehkomnatnye|dvuhkomnatnye|odnokomnatnye|chetyrehkomnatnye|kvartiry_studii)\/kvartira-.*/.test(window.location.href) && window.ga(config.tracker_name[2] + '.send', {
+									hitType: 'pageview'
+								});
+
 				window.callBackFunction = function() {
 					window.tbs_ = document.getElementById('planoplanWidgetAreaTabs').childNodes;
 					window.tbs_len = window.tbs_.length;
