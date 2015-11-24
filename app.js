@@ -1380,7 +1380,7 @@ define('app_test', [
 
 				window.eventListenerFunction = function(event) {					
 					console.log(event);					
-					if (event.origin != 'http://widget.planoplan.com' && event.origin != 'https://widget.planoplan.com') {
+					if (event.origin != 'http://widget.planoplan.com' && event.origin != 'https://widget.planoplan.com' && event.origin != "http://www.sevgorod.ru") {
 						return;
 					}
 					if (event.data == 'planoplanReady') {
