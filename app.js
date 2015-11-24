@@ -1306,7 +1306,7 @@ define('app_test', [
 					fontSize: 12,
 					uid: window.planoplan_uid || "d4c8332c6bf27210af3b3af228f7f417",
 					statId: config.ga_id,
-					statSource: config.loc.hostname
+					statSource: config.loc.protocol + "//" + config.loc.hostname
 				};
 
 				/(trehkomnatnye|dvuhkomnatnye|odnokomnatnye|chetyrehkomnatnye|kvartiry_studii)\/kvartira-.*/.test(window.location.href) && window.ga(config.tracker_name[2] + '.send', {
