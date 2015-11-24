@@ -1383,7 +1383,7 @@ define('app_test', [
 					if (event.origin != 'http://widget.planoplan.com' && event.origin != 'https://widget.planoplan.com' && event.origin != "http://www.sevgorod.ru") {
 						return;
 					}
-					if (event.data == 'planoplanReady') {
+					if (event.data == 'planoplanWidgetReady') {
 						var getType = {};
 						if(window.callBackFunction && getType.toString.call(window.callBackFunction) === '[object Function]'){
 							window.callBackFunction();
